@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #00944D;
+    --accent: #E5E5E5;
+    --primary-text: #000000;
+    --secondary-text: #515151;
+    --background: #FFFFFF;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+}
+
+h1 {
+    font-size: 85pt;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 48pt;
+}
+
+.subtitle {
+    display: block;
+    font-size: 24pt;
+    color: var(--secondary-text);
+    margin-bottom: 25px;
+}
+
+.btn {
+    border: none;
+    background: var(--accent);
+    font-size: 18pt;
+    font-family: Poppins, sans-serif;
+    color: var(--secondary-text);
+    padding: 15px 45px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .3s, background-color .3s, box-shadow .3s;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: var(--accent);
+}
+
+.accent {
+    color: var(--primary);
+}
+
+main {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.header {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header nav {
+    background: var(--accent);
+    font-size: 17pt;
+    color: var(--secondary-text);
+    display: flex;
+    border-radius: 50px;
+    column-gap: 15px;
+    padding: 15px 45px;
+}
+
+.header nav div {
+    cursor: pointer;
+}
+
+.header nav div:hover {
+    color: var(--primary-text);
+}
+
+.hero {
+    height: calc(100vh - 145px);
+    position: relative;
+    display: flex;
+}
+
+.hero-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.hero-bg {
+    position: relative;
+    height: 100%;
+    width: 60%;
+    right: 0;
+    transform: translateX(5vw);
+    clip-path: polygon(0 23%, 100% 0, 100% 100%, 0 86%);
+    background: var(--primary);
+    background-image: url("/hero.png");
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero .buttons {
+    display: flex;
+    column-gap: 10px;
+}
+
+.projects .title {
+    text-align: center;
+}
