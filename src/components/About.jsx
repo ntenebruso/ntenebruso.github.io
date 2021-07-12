@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function About() {
     return (
         <section className="about" id="about">
@@ -37,12 +35,12 @@ export default function About() {
                 </div>
                 <div style={{ position: "relative" }} className="social">
                     <div style={{ width: "100%", height: "400px", display: "block", position: "relative" }}>
-                        <Image src="/pfp.svg" layout="fill" objectFit="contain" />
+                        <img src="/pfp.svg" width="100%" height="100%" />
                     </div>
                     <h3>Follow my work</h3>
                     <div className="social-buttons">
-                        <a href="https://github.com/ntenebruso" target="_blank"><button className="btn"><i className="bi bi-github"></i> Github</button></a>
-                        <a href="https://www.instagram.com/nick_tenebruso/" target="_blank"><button className="btn"><i className="bi bi-instagram"></i> Instagram</button></a>
+                        <a href="https://github.com/ntenebruso" target="_blank" rel="noreferrer"><button className="btn"><i className="bi bi-github"></i> Github</button></a>
+                        <a href="https://www.instagram.com/nick_tenebruso/" target="_blank" rel="noreferrer"><button className="btn"><i className="bi bi-instagram"></i> Instagram</button></a>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ export default function Hero() {
         <>
             <section className="hero">
                 <div className="hero-intro">
-                    <h1>I'm a <span className="accent">web developer</span>.</h1>
+                    <h1>I&apos;m a <span className="accent">web developer</span>.</h1>
                     <span className="subtitle">My name is Nick Tenebruso</span>
                     <div className="buttons">
                         <button className="btn primary">My projects</button>
