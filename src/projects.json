@@ -1,0 +1,16 @@
+[
+    {
+        "name": "TypeTest",
+        "description": "A web application that lets you view and save your typing stats such as WPM and accuracy in detail.",
+        "projecturl": "https://github.com/ntenebruso/TypeTest",
+        "img": "/typetest.jpg",
+        "tags": ["Vue", "Firebase"]
+    },
+    {
+        "name": "Chatt",
+        "description": "A real-time chat application with saved rooms and accounts.",
+        "projecturl": "https://github.com/ntenebruso/chat-app",
+        "img": "/chatt.jpg",
+        "tags": ["Svelte", "Sapper", "Full-Stack"]
+    }
+]
