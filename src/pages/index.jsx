@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Nick Tenebruso's Portfolio</title>
+                <title>Nick Tenebruso&apos;s Portfolio</title>
             </Head>
             <Layout>
                 <Hero />
