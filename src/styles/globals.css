@@ -164,7 +164,7 @@ section, .header .spacer {
     top: 150px;
     clip-path: polygon(0 21%, 100% 0, 100% 100%, 0 87%);
     background: var(--primary);
-    background-image: url("/hero.png");
+    background-image: url("https://cdn.statically.io/gh/ntenebruso/ntenebruso.github.io/gh-pages/hero.png");
     background-size: 70%;
     background-position: center;
     background-repeat: no-repeat;
