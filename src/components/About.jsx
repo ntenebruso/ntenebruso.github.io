@@ -14,6 +14,7 @@ export default function About() {
                             <h4>Web Technologies</h4>
                             <ul>
                                 <li>HTML, CSS, and Javascript/Typescript</li>
+                                <li>Node.js</li>
                                 <li>React</li>
                                 <li>Vue</li>
                                 <li>Svelte</li>
