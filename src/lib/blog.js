@@ -10,12 +10,16 @@ import codeTitle from "remark-code-titles";
 const postsPath = path.join(process.cwd(), "content", "posts");
 
 export async function getPostSlugs() {
-    const posts = fs.readdirSync(postsPath);
+    const posts = fs
+        .readdirSync(postsPath)
+        .filter((file) => path.extname(file) == ".mdx");
     return posts;
 }
 
 export async function getAllPosts() {
-    const files = fs.readdirSync(postsPath);
+    const files = fs
+        .readdirSync(postsPath)
+        .filter((file) => path.extname(file) == ".mdx");
 
     return Promise.all(
         files.map(async (slug) => {
