@@ -7,7 +7,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import codeTitle from "remark-code-titles";
 
-const postsPath = path.join(__dirname, "..", "..", "content", "posts");
+const postsPath = path.join(process.cwd(), "content", "posts");
 
 export async function getPostSlugs() {
     const posts = fs.readdirSync(postsPath);
