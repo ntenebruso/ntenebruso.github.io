@@ -1,33 +1,104 @@
-import { useEffect } from "react";
-import data from "../projects.json";
+import {
+    Box,
+    Button,
+    VStack,
+    Heading,
+    Flex,
+    Tag,
+    Text,
+    AspectRatio,
+    useColorMode,
+} from "@chakra-ui/react";
+import Image from "next/image";
+import data from "@/content/projects.json";
 
 export default function Projects() {
-    useEffect(() => {
-        console.log(data);
-    }, []);
+    const { colorMode } = useColorMode();
+
+    function getColorScheme(name) {
+        switch (name.toLowerCase()) {
+            case "vue":
+                return "green";
+            case "svelte":
+            case "sapper":
+                return "orange";
+            case "firebase":
+                return "yellow";
+            default:
+                return "blue";
+        }
+    }
 
     return (
-        <section className="projects" id="projects">
-            <h2 className="title">Projects</h2>
-            <div className="projects-grid">
+        <Box>
+            <Heading
+                as="h2"
+                textAlign="center"
+                fontSize="5xl"
+                mb={4}
+                id="projects"
+            >
+                Projects
+            </Heading>
+            <VStack>
                 {data.map((project, index) => (
-                    <div className="project-tile" key={index}>
-                        <div className="project-img" style={{ width: "100%", height: "200px", display: "block", position: "relative" }}>
-                            <img src={project.img} width="100%" height="100%" style={{ objectFit: "cover" }} />
-                        </div>
-                        <div className="project-info">
-                            {project.tags.map(tag => (
-                                <span className="tag" key={tag}>{tag}</span>
-                            ))}
-                            <h4>{project.name}</h4>
-                            <p className="description">{project.description}</p>
-                        </div>
-                        <div className="view-buttons">
-                            <a href={project.projecturl} target="_blank" rel="noreferrer"><button className="btn primary" style={{ display: "inline-block", fontSize: "16px", margin: "auto" }}>View on GitHub</button></a>
-                        </div>
-                    </div>
+                    <Flex
+                        key={index}
+                        background={
+                            colorMode == "dark" ? "gray.800" : "gray.50"
+                        }
+                        padding={4}
+                        rounded="md"
+                        alignItems="center"
+                        gap={2}
+                        width="90%"
+                        maxWidth="4xl"
+                        direction={{ base: "column", md: "row" }}
+                    >
+                        <AspectRatio
+                            width="100%"
+                            ratio={16 / 9}
+                            position="relative"
+                            rounded="md"
+                            overflow="hidden"
+                        >
+                            <Image
+                                src={project.img}
+                                layout="fill"
+                                objectFit="cover"
+                            />
+                        </AspectRatio>
+                        <VStack spacing={1} display="block" width="100%">
+                            <Box>
+                                {project.tags.map((tag) => (
+                                    <Tag
+                                        key={tag}
+                                        colorScheme={getColorScheme(tag)}
+                                        mr={2}
+                                        mb={2}
+                                    >
+                                        {tag}
+                                    </Tag>
+                                ))}
+                            </Box>
+                            <Heading as="h3" fontSize="2xl">
+                                {project.name}
+                            </Heading>
+                            <Text>{project.description}</Text>
+                        </VStack>
+                        <Box>
+                            <Button
+                                as="a"
+                                href={project.projecturl}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                View on GitHub
+                            </Button>
+                        </Box>
+                    </Flex>
                 ))}
-            </div>
-        </section>
-    )
+            </VStack>
+        </Box>
+    );
 }
