@@ -6,6 +6,7 @@ import theme from "@/lib/theme";
 import "@/styles/prism.css";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { DefaultSeo } from "next-seo";
 
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/500.css";
@@ -25,12 +26,18 @@ gsap.registerPlugin(ScrollToPlugin);
 
 function MyApp({ Component, pageProps }) {
     return (
-        <ChakraProvider theme={theme}>
-            <Layout>
-                <Global styles={typography} />
-                <Component {...pageProps} />
-            </Layout>
-        </ChakraProvider>
+        <>
+            <DefaultSeo
+                titleTemplate="%s | Nick Tenebruso's Portfolio"
+                defaultTitle="Nick Tenebruso's Portfolio"
+            />
+            <ChakraProvider theme={theme}>
+                <Layout>
+                    <Global styles={typography} />
+                    <Component {...pageProps} />
+                </Layout>
+            </ChakraProvider>
+        </>
     );
 }
 
