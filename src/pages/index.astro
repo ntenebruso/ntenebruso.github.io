@@ -1,0 +1,87 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Tags from "../components/Tags.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout title="Nick Tenebruso's Portfolio">
+    <main>
+        <section
+            class="max-w-5xl mx-auto px-5 py-32 flex flex-col justify-center"
+        >
+            <h2 class="text-4xl font-bold">Hi, I'm Nick Tenebruso 👋</h2>
+            <h3 class="text-xl mt-2 text-zinc-400">
+                A web developer who likes designing and programming open-source
+                projects
+            </h3>
+            <p class="mt-5">
+                Welcome to my website! I am currently 16 years old and I have
+                been doing web development for three years. I mainly work on
+                coding projects as a hobby of mine and I have always had a
+                strong passion for programming.
+            </p>
+            <div class="mt-5 flex gap-x-2">
+                <a href="#tech"><button class="btn">Technologies</button></a>
+                <a href="#projects"><button class="btn">Projects</button></a>
+                <a href="mailto:nickten2006@gmail.com"
+                    ><button class="btn">Contact me</button>
+                </a>
+            </div>
+        </section>
+        <section class="max-w-5xl mx-auto px-5" id="tech">
+            <div class="rounded-md p-4 bg-indigo-900 text-zinc-200">
+                <h2 class="text-4xl font-bold">My Tech Stack</h2>
+                <p class="mt-5">
+                    I always try to keep myself up-to-date with the latest
+                    technologies. I extensively modify my tech stack in order to
+                    build beautiful & performant apps as quick as possible.
+                </p>
+                <h3 class="mt-5 mb-2 text-2xl font-bold">Languages</h3>
+                <Tags
+                    tags={[
+                        "HTML",
+                        "CSS",
+                        "Javascript",
+                        "Typescript",
+                        "C",
+                        "C++",
+                        "C#",
+                        "Python",
+                        "Go",
+                        "Rust",
+                    ]}
+                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                />
+                <h3 class="mt-5 mb-2 text-2xl font-bold">Tools</h3>
+                <Tags
+                    tags={["NodeJS", "Docker", "Git"]}
+                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                />
+                <h3 class="mt-5 mb-2 text-2xl font-bold">Frameworks</h3>
+                <Tags
+                    tags={[
+                        "React",
+                        "Vue",
+                        "Astro",
+                        "Hugo",
+                        "Vite",
+                        "Tailwindcss",
+                        "Express",
+                        "Qt",
+                        "GTK",
+                    ]}
+                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                />
+                <h3 class="mt-5 mb-2 text-2xl font-bold">Other</h3>
+                <Tags
+                    tags={["Linux", "Emacs", "Vim", "VSCode"]}
+                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                />
+            </div>
+        </section>
+        <section class="max-w-5xl mx-auto px-5 mt-20" id="projects">
+            <h2 class="text-4xl font-bold text-center mb-4">Projects</h2>
+            <Projects />
+        </section>
+    </main>
+</Layout>

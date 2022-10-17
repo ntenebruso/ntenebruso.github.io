@@ -1,0 +1,30 @@
+---
+import "../styles/prism.css";
+import Layout from "./Layout.astro";
+import Tags from "../components/Tags.astro";
+import { format } from "date-fns";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <main>
+        <div class="max-w-5xl mx-auto px-5 mt-10">
+            <div>
+                <Tags
+                    tags={frontmatter.tags}
+                    class="bg-emerald-300 text-black px-2 rounded-md"
+                />
+                <h1 class="mt-4 text-5xl font-bold">
+                    {frontmatter.title}
+                </h1>
+                <h2 class="text-zinc-400 text-xl mt-2">
+                    {format(new Date(frontmatter.publishedAt), "MMMM do, yyyy")}
+                </h2>
+            </div>
+            <article class="mt-10 prose dark:prose-invert mx-auto">
+                <slot />
+            </article>
+        </div>
+    </main>
+</Layout>

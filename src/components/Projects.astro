@@ -1,0 +1,25 @@
+---
+import projects from "../content/projects.json";
+import Tags from "./Tags.astro";
+---
+
+{
+    projects.map((project) => (
+        <div
+            class="bg-gray-200 dark:bg-zinc-800 py-5 px-4 mb-5 rounded-lg max-w-3xl mx-auto"
+            id={project.id}
+        >
+            <Tags
+                tags={project.tags}
+                class="bg-gray-300 dark:bg-zinc-700 rounded-md text-sm px-1 py-[2px]"
+            />
+            <h3 class="font-bold text-2xl mt-2">{project.name}</h3>
+            <p>{project.description}</p>
+            <div class="mt-2">
+                <a href={project.github} target="_blank">
+                    <button class="btn">View on Github</button>
+                </a>
+            </div>
+        </div>
+    ))
+}

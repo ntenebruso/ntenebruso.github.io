@@ -1,0 +1,61 @@
+<header class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3">
+    <h2 class="font-bold text-3xl">Nick Tenebruso</h2>
+    <div class="flex gap-x-3 relative">
+        <nav
+            class="flex items-center bg-gray-200 dark:bg-zinc-800 px-4 h-10 rounded-full"
+        >
+            <ul class="flex gap-x-4 font-semibold">
+                <li>
+                    <a href="/" class="text-current hover:no-underline">Home</a>
+                </li>
+                <li>
+                    <a href="/posts" class="text-current hover:no-underline"
+                        >Blog</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://github.com/ntenebruso"
+                        target="_blank"
+                        class="text-current hover:no-underline">Github</a
+                    >
+                </li>
+            </ul>
+        </nav>
+        <button
+            id="toggle-btn"
+            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200"
+        >
+        </button>
+    </div>
+</header>
+
+<script is:inline>
+    const toggleBtn = document.getElementById("toggle-btn");
+
+    function toggleBtnLight() {
+        toggleBtn.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+    }
+
+    function toggleBtnDark() {
+        toggleBtn.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+    }
+
+    toggleBtn.addEventListener("click", () => {
+        if (document.documentElement.classList.contains("dark")) {
+            toggleBtnLight();
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+        } else {
+            toggleBtnDark();
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+
+    if (document.documentElement.classList.contains("dark")) {
+        toggleBtnDark();
+    } else {
+        toggleBtnLight();
+    }
+</script>
