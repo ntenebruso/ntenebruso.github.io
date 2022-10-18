@@ -10,11 +10,13 @@ const { frontmatter } = Astro.props;
 <Layout title={frontmatter.title}>
     <main>
         <div class="max-w-5xl mx-auto px-5 mt-10">
-            <div>
-                <Tags
-                    tags={frontmatter.tags}
-                    class="bg-emerald-300 text-black px-2 rounded-md"
-                />
+            <div class="text-center">
+                <div class="flex justify-center">
+                    <Tags
+                        tags={frontmatter.tags}
+                        class="bg-emerald-300 text-black px-2 rounded-md"
+                    />
+                </div>
                 <h1 class="mt-4 text-5xl font-bold">
                     {frontmatter.title}
                 </h1>

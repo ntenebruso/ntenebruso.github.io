@@ -1,10 +1,31 @@
 <header class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3">
     <h2 class="font-bold text-3xl">Nick Tenebruso</h2>
     <div class="flex gap-x-3 relative">
-        <nav
-            class="flex items-center bg-gray-200 dark:bg-zinc-800 px-4 h-10 rounded-full"
+        <button
+            id="toggle-btn"
+            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700"
+            aria-label="Toggle theme"
         >
-            <ul class="flex gap-x-4 font-semibold">
+        </button>
+        <button
+            id="menu-btn-open"
+            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 block md:hidden"
+            aria-label="Open menu"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav
+            id="menu"
+            class="flex items-center bg-gray-200 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-gray-300 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition -translate-y-full md:translate-y-0"
+        >
+            <button
+                id="menu-btn-close"
+                class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 block md:hidden absolute top-2 right-2"
+                ><i class="fa-solid fa-xmark"></i>
+            </button>
+            <ul
+                class="flex flex-col md:flex-row gap-x-4 gap-y-10 font-semibold mx-auto py-10 md:py-0 text-3xl md:text-base"
+            >
                 <li>
                     <a href="/" class="text-current hover:no-underline">Home</a>
                 </li>
@@ -22,11 +43,6 @@
                 </li>
             </ul>
         </nav>
-        <button
-            id="toggle-btn"
-            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200"
-        >
-        </button>
     </div>
 </header>
 
@@ -58,4 +74,18 @@
     } else {
         toggleBtnLight();
     }
+</script>
+
+<script is:inline>
+    const menuOpenBtn = document.getElementById("menu-btn-open");
+    const menuCloseBtn = document.getElementById("menu-btn-close");
+    const menu = document.getElementById("menu");
+
+    menuOpenBtn.addEventListener("click", () => {
+        menu.classList.remove("-translate-y-full");
+    });
+
+    menuCloseBtn.addEventListener("click", () => {
+        menu.classList.add("-translate-y-full");
+    });
 </script>
