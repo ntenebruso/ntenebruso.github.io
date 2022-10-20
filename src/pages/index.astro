@@ -10,7 +10,7 @@ import Projects from "../components/Projects.astro";
             class="max-w-5xl mx-auto px-5 py-32 flex flex-col justify-center"
         >
             <h2 class="text-4xl font-bold">Hi, I'm Nick Tenebruso 👋</h2>
-            <h3 class="text-xl mt-2 text-zinc-400">
+            <h3 class="text-xl mt-2 text-zinc-500 dark:text-zinc-400">
                 A web developer who likes designing and programming open-source
                 projects
             </h3>
@@ -29,9 +29,9 @@ import Projects from "../components/Projects.astro";
             </div>
         </section>
         <section class="max-w-5xl mx-auto px-5" id="tech">
-            <div class="rounded-md p-4 bg-indigo-900 text-zinc-200">
-                <h2 class="text-4xl font-bold">My Tech Stack</h2>
-                <p class="mt-5">
+            <h2 class="text-4xl font-bold text-center mb-4">My Tech Stack</h2>
+            <div class="rounded-md p-4 bg-zinc-800 text-zinc-200">
+                <p>
                     I always try to keep myself up-to-date with the latest
                     technologies. I extensively modify my tech stack in order to
                     build beautiful & performant apps as quick as possible.
@@ -50,12 +50,12 @@ import Projects from "../components/Projects.astro";
                         "Go",
                         "Rust",
                     ]}
-                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                    class="bg-brand py-2 px-3 text-zinc-200 rounded-md"
                 />
                 <h3 class="mt-5 mb-2 text-2xl font-bold">Tools</h3>
                 <Tags
                     tags={["NodeJS", "Docker", "Git"]}
-                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                    class="bg-brand py-2 px-3 text-zinc-200 rounded-md"
                 />
                 <h3 class="mt-5 mb-2 text-2xl font-bold">Frameworks</h3>
                 <Tags
@@ -70,12 +70,12 @@ import Projects from "../components/Projects.astro";
                         "Qt",
                         "GTK",
                     ]}
-                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                    class="bg-brand py-2 px-3 text-zinc-200 rounded-md"
                 />
                 <h3 class="mt-5 mb-2 text-2xl font-bold">Other</h3>
                 <Tags
                     tags={["Linux", "Emacs", "Vim", "VSCode"]}
-                    class="bg-emerald-300 py-2 px-3 text-black rounded-md"
+                    class="bg-brand py-2 px-3 text-zinc-200 rounded-md"
                 />
             </div>
         </section>

@@ -1,22 +1,26 @@
+---
+import NavLink from "./NavLink.astro";
+---
+
 <header class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3">
     <h2 class="font-bold text-3xl">Nick Tenebruso</h2>
     <div class="flex gap-x-3 relative">
         <button
             id="toggle-btn"
-            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700"
+            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 leading-[0px]"
             aria-label="Toggle theme"
         >
         </button>
         <button
             id="menu-btn-open"
-            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 block md:hidden"
+            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 block md:hidden leading-[0px]"
             aria-label="Open menu"
         >
             <i class="fa-solid fa-bars"></i>
         </button>
         <nav
             id="menu"
-            class="flex items-center bg-gray-200 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-gray-300 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition -translate-y-full md:translate-y-0"
+            class="flex items-center bg-gray-200 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-gray-300 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
         >
             <button
                 id="menu-btn-close"
@@ -27,18 +31,15 @@
                 class="flex flex-col md:flex-row gap-x-4 gap-y-10 font-semibold mx-auto py-10 md:py-0 text-3xl md:text-base"
             >
                 <li>
-                    <a href="/" class="text-current hover:no-underline">Home</a>
+                    <NavLink href="/">Home</NavLink>
                 </li>
                 <li>
-                    <a href="/posts" class="text-current hover:no-underline"
-                        >Blog</a
-                    >
+                    <NavLink href="/posts">Blog</NavLink>
                 </li>
                 <li>
-                    <a
+                    <NavLink
                         href="https://github.com/ntenebruso"
-                        target="_blank"
-                        class="text-current hover:no-underline">Github</a
+                        target="_blank">Github</NavLink
                     >
                 </li>
             </ul>

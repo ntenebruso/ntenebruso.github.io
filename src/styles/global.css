@@ -7,7 +7,7 @@ h1 {
 }
 
 a {
-    @apply text-emerald-300;
+    @apply text-brand;
 }
 
 a:hover {
@@ -15,7 +15,7 @@ a:hover {
 }
 
 .btn {
-    @apply inline-block text-black font-semibold bg-emerald-300 cursor-pointer px-4 py-2 rounded-full transition;
+    @apply inline-block text-zinc-200 font-semibold bg-brand cursor-pointer px-4 py-2 rounded-full transition;
 }
 
 .btn:hover {

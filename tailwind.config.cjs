@@ -4,7 +4,14 @@ module.exports = {
     darkMode: "class",
     theme: {
         fontFamily: {
-            sans: ["Inter", "sans-serif"],
+            sans: ["Poppins", "sans-serif"],
+        },
+        extend: {
+            colors: {
+                brand: {
+                    DEFAULT: "#00944D",
+                },
+            },
         },
     },
     plugins: [require("@tailwindcss/typography")],
