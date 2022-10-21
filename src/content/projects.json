@@ -12,5 +12,12 @@
         "description": "A real-time chat application with saved rooms and accounts.",
         "github": "https://github.com/ntenebruso/chat-app",
         "tags": ["Svelte", "Sapper", "Full-Stack"]
+    },
+    {
+        "id": "redlight",
+        "name": "Redlight",
+        "description": "A faster & more private client for Reddit.",
+        "github": "https://github.com/ntenebruso/redlight",
+        "tags": ["React", "NextJS", "API"]
     }
 ]

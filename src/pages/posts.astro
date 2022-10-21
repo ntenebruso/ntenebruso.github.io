@@ -18,7 +18,7 @@ const posts = await Astro.glob("./posts/*.mdx");
                                 tags={post.frontmatter.tags}
                                 class="bg-brand text-zinc-200 px-2 rounded-md"
                             />
-                            <p class="inline-block text-zinc-400">
+                            <p class="inline-block text-zinc-500 dark:text-zinc-400">
                                 {formatDistance(
                                     new Date(post.frontmatter.publishedAt),
                                     Date.now()

@@ -20,17 +20,21 @@ import Projects from "../components/Projects.astro";
                 coding projects as a hobby of mine and I have always had a
                 strong passion for programming.
             </p>
-            <div class="mt-5 flex gap-x-2">
-                <a href="#tech"><button class="btn">Technologies</button></a>
-                <a href="#projects"><button class="btn">Projects</button></a>
+            <div class="mt-5 flex flex-wrap gap-2">
+                <a href="#tech"
+                    ><button class="btn whitespace-nowrap">Technologies</button>
+                </a>
+                <a href="#projects"
+                    ><button class="btn whitespace-nowrap">Projects</button>
+                </a>
                 <a href="mailto:nickten2006@gmail.com"
-                    ><button class="btn">Contact me</button>
+                    ><button class="btn whitespace-nowrap">Contact me</button>
                 </a>
             </div>
         </section>
         <section class="max-w-5xl mx-auto px-5" id="tech">
             <h2 class="text-4xl font-bold text-center mb-4">My Tech Stack</h2>
-            <div class="rounded-md p-4 bg-zinc-800 text-zinc-200">
+            <div class="rounded-md p-4 bg-gray-200 dark:bg-zinc-800">
                 <p>
                     I always try to keep myself up-to-date with the latest
                     technologies. I extensively modify my tech stack in order to
@@ -54,7 +58,7 @@ import Projects from "../components/Projects.astro";
                 />
                 <h3 class="mt-5 mb-2 text-2xl font-bold">Tools</h3>
                 <Tags
-                    tags={["NodeJS", "Docker", "Git"]}
+                    tags={["NodeJS", "Docker", "PostgreSQL", "MongoDB", "Git"]}
                     class="bg-brand py-2 px-3 text-zinc-200 rounded-md"
                 />
                 <h3 class="mt-5 mb-2 text-2xl font-bold">Frameworks</h3>
@@ -67,6 +71,8 @@ import Projects from "../components/Projects.astro";
                         "Vite",
                         "Tailwindcss",
                         "Express",
+                        "Prisma",
+                        "Mongoose",
                         "Qt",
                         "GTK",
                     ]}
