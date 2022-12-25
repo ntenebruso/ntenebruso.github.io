@@ -1,9 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Tags from "../components/Tags.astro";
-import { formatDistance } from "date-fns";
+import { format } from "date-fns";
 
-const posts = await Astro.glob("./posts/*.mdx");
+const posts = (await Astro.glob("./posts/*.mdx")).sort((a, b) => {
+    return (
+        new Date(a.frontmatter.publishedAt).getTime() -
+        new Date(b.frontmatter.publishedAt).getTime()
+    );
+});
 ---
 
 <Layout title="Nick Tenebruso's Blog">
@@ -11,25 +16,25 @@ const posts = await Astro.glob("./posts/*.mdx");
         <h1 class="text-5xl font-bold text-center mb-10">Blog Posts</h1>
         {
             posts.map((post) => (
-                <a class="text-current hover:no-underline mt-4" href={post.url}>
-                    <div class="bg-gray-200 dark:bg-zinc-800 mx-auto max-w-3xl p-4 rounded-lg border-[1px] border-gray-300 dark:border-zinc-700 transition-transform duration-300 hover:-translate-y-1">
-                        <div class="flex justify-between">
-                            <Tags
-                                tags={post.frontmatter.tags}
-                                class="bg-brand text-zinc-200 px-2 rounded-md"
-                            />
-                            <p class="inline-block text-zinc-500 dark:text-zinc-400">
-                                {formatDistance(
-                                    new Date(post.frontmatter.publishedAt),
-                                    Date.now()
-                                )}{" "}
-                                ago
-                            </p>
-                        </div>
-                        <h2 class="text-3xl font-bold mt-3">
-                            {post.frontmatter.title}
-                        </h2>
+                <a
+                    class="block text-current hover:no-underline mt-4 bg-gray-200 dark:bg-zinc-800 mx-auto max-w-3xl p-4 rounded-lg border-[1px] border-gray-300 dark:border-zinc-700 transition-transform duration-300 hover:-translate-y-1"
+                    href={post.url}
+                >
+                    <div class="flex justify-between">
+                        <Tags
+                            tags={post.frontmatter.tags}
+                            class="bg-brand text-zinc-200 px-2 rounded-md"
+                        />
+                        <p class="inline-block text-zinc-500 dark:text-zinc-400">
+                            {format(
+                                new Date(post.frontmatter.publishedAt),
+                                "MMMM do, yyyy"
+                            )}
+                        </p>
                     </div>
+                    <h2 class="text-3xl font-bold mt-3">
+                        {post.frontmatter.title}
+                    </h2>
                 </a>
             ))
         }

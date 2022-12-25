@@ -10,22 +10,35 @@ const { frontmatter } = Astro.props;
 <Layout title={frontmatter.title}>
     <main>
         <div class="max-w-5xl mx-auto px-5 mt-10">
-            <div class="text-center">
-                <div class="flex justify-center">
-                    <Tags
-                        tags={frontmatter.tags}
-                        class="bg-brand text-zinc-200 px-2 rounded-md"
-                    />
+            <article itemscope itemtype="https://schema.org/Article">
+                <div class="text-center">
+                    <div class="flex justify-center" itemprop="keywords">
+                        <Tags
+                            tags={frontmatter.tags}
+                            class="bg-brand text-zinc-200 px-2 rounded-md"
+                        />
+                    </div>
+                    <h1 class="mt-4 text-5xl font-bold" itemprop="name">
+                        {frontmatter.title}
+                    </h1>
+                    <time
+                        class="block text-zinc-500 dark:text-zinc-400 text-xl mt-2"
+                        itemprop="datePublished"
+                    >
+                        {
+                            format(
+                                new Date(frontmatter.publishedAt),
+                                "MMMM do, yyyy"
+                            )
+                        }
+                    </time>
                 </div>
-                <h1 class="mt-4 text-5xl font-bold">
-                    {frontmatter.title}
-                </h1>
-                <h2 class="text-zinc-500 dark:text-zinc-400 text-xl mt-2">
-                    {format(new Date(frontmatter.publishedAt), "MMMM do, yyyy")}
-                </h2>
-            </div>
-            <article class="mt-10 prose dark:prose-invert mx-auto">
-                <slot />
+                <div
+                    itemprop="articleBody"
+                    class="mt-10 prose dark:prose-invert mx-auto"
+                >
+                    <slot />
+                </div>
             </article>
         </div>
     </main>
