@@ -15,7 +15,7 @@ if (href == "/") {
 
 <a
     href={href}
-    class={`text-current hover:no-underline ${isActive && "text-brand"}`}
+    class={`hover:no-underline ${isActive ? "text-brand" : "text-current"}`}
     {...props}
 >
     <slot />

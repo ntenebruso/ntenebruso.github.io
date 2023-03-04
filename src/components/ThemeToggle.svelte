@@ -3,9 +3,6 @@
 
     function handleClick() {
         theme = theme == "dark" ? "light" : "dark";
-    }
-
-    $: {
         if (theme == "dark") {
             document.documentElement.classList.add("dark");
         } else {

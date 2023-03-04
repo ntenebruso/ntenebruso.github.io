@@ -12,6 +12,16 @@ module.exports = {
                     DEFAULT: "#00944D",
                 },
             },
+            typography: ({ theme }) => ({
+                DEFAULT: {
+                    css: {
+                        "--tw-prose-bullets": theme("colors.brand.DEFAULT"),
+                        "--tw-prose-invert-bullets": theme(
+                            "colors.brand.DEFAULT"
+                        ),
+                    },
+                },
+            }),
         },
     },
     plugins: [require("@tailwindcss/typography")],
