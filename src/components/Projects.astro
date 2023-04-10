@@ -21,6 +21,11 @@ import Tags from "./Tags.astro";
                         <button class="btn">View on Github</button>
                     </a>
                 )}
+                {project.more && (
+                    <a href={project.more} target="_blank">
+                        <button class="btn">View more info</button>
+                    </a>
+                )}
             </div>
         </div>
     ))
