@@ -1,14 +1,20 @@
 <script>
-    export let theme = localStorage.getItem("theme") ?? "dark";
+    import { theme } from "@lib/store.ts";
+
+    let themeValue;
+
+    theme.subscribe(value => {
+        themeValue = value;
+    })
 
     function handleClick() {
-        theme = theme == "dark" ? "light" : "dark";
-        if (theme == "dark") {
+        theme.update(value => (value == "dark" ? "light" : "dark"));
+        if (themeValue == "dark") {
             document.documentElement.classList.add("dark");
         } else {
             document.documentElement.classList.remove("dark");
         }
-        localStorage.setItem("theme", theme);
+        localStorage.setItem("theme", themeValue);
     }
 </script>
 
@@ -18,7 +24,7 @@
     aria-label="Toggle theme"
     on:click={handleClick}
 >
-{#if theme == "dark"}
+{#if themeValue == "dark"}
     <i class="fa-solid fa-moon"></i>
 {:else}
     <i class="fa-solid fa-sun"></i>
