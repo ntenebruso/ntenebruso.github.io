@@ -7,21 +7,34 @@
 
     theme.subscribe(value => {
         themeValue = value;
-        const iframe = document.querySelector(".utterances-frame");
+        const iframe = document.querySelector("iframe.giscus-frame");
         if (iframe) {
-            console.log(`github-${value}`);
-            iframe.contentWindow.postMessage({ type: "set-theme", theme: `github-${value}` }, "https://utteranc.es");
+            iframe.contentWindow.postMessage({
+                giscus: {
+                    setConfig: {
+                        theme: value,
+                    },
+                },
+            }, "https://giscus.app");
         }
     });
 
     onMount(() => {
         const script = document.createElement("script");
-        script.setAttribute("src", "https://utteranc.es/client.js");
-        script.setAttribute("repo", "ntenebruso/blog-comments");
-        script.setAttribute("issue-term", "pathname");
-        script.setAttribute("theme", `github-${themeValue}`);
+        script.setAttribute("src", "https://giscus.app/client.js");
+        script.setAttribute("data-repo", "ntenebruso/blog-comments");
+        script.setAttribute("data-repo-id", "R_kgDOJiAR1A");
+        script.setAttribute("data-category", "Comments");
+        script.setAttribute("data-category-id", "DIC_kwDOJiAR1M4CWdk0");
+        script.setAttribute("data-mapping", "pathname");
+        script.setAttribute("data-strict", "0");
+        script.setAttribute("data-reactions-enabled", "0");
+        script.setAttribute("data-emit-metadata", "0");
+        script.setAttribute("data-input-position", "top");
+        script.setAttribute("data-theme", themeValue);
+        script.setAttribute("data-lang", "en");
         script.setAttribute("crossorigin", "anonymous");
-        script.setAttribute("async", true);
+        script.setAttribute("async", "1");
         container.append(script);
     });
 </script>
