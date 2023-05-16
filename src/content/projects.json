@@ -1,5 +1,12 @@
 [
     {
+        "id": "arctic-os",
+        "name": "Arctic OS",
+        "description": "An arch-based linux distribution with a graphical installer (made and maintained as a hobby). Currently working to make new GNOME and KDE Plasma profiles alongside the existing XFCE ISO.",
+        "more": "https://gitlab.com/arctic-os/",
+        "tags": ["Linux"]
+    },
+    {
         "id": "redlight",
         "name": "Redlight",
         "description": "A faster & more private client for Reddit.",
@@ -19,12 +26,5 @@
         "description": "A real-time chat application with saved rooms and accounts.",
         "github": "https://github.com/ntenebruso/chat-app",
         "tags": ["Web", "Svelte", "Sapper", "Full-Stack"]
-    },
-    {
-        "id": "arctic-os",
-        "name": "Arctic OS",
-        "description": "An arch-based linux distribution with a graphical installer (made and maintained as a hobby). Currently working to make new GNOME and KDE Plasma profiles alongside the existing XFCE ISO.",
-        "more": "https://gitlab.com/arctic-os/",
-        "tags": ["Linux"]
     }
 ]

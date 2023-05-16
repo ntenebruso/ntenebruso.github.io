@@ -8,24 +8,21 @@ import { format } from "date-fns";
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title}>
-    <main>
-        <div class="max-w-5xl mx-auto px-5 mt-10">
-            <article itemscope itemtype="https://schema.org/Article">
-                <div class="text-center">
-                    <div class="flex justify-center" itemprop="keywords">
-                        <Tags
-                            tags={frontmatter.tags}
-                            class="bg-brand text-zinc-200 px-2 rounded-md"
-                        />
-                    </div>
-                    <h1 class="mt-4 text-5xl font-bold" itemprop="name">
-                        {frontmatter.title}
-                    </h1>
-                    <time
-                        class="block text-zinc-500 dark:text-zinc-400 text-xl mt-2"
-                        itemprop="datePublished"
-                    >
+<Layout title={frontmatter.title} description={frontmatter.summary}>
+    <main class="max-w-5xl mx-auto px-5 mt-10">
+        <article>
+            <header class="text-center">
+                <div class="flex justify-center">
+                    <Tags
+                        tags={frontmatter.tags}
+                        class="bg-brand text-zinc-200 px-2 rounded-md"
+                    />
+                </div>
+                <h1 class="mt-4 text-5xl font-bold">
+                    {frontmatter.title}
+                </h1>
+                <p class="block text-zinc-500 dark:text-zinc-400 text-xl mt-2">
+                    <time datetime={frontmatter.publishedAt}>
                         {
                             format(
                                 new Date(frontmatter.publishedAt),
@@ -33,16 +30,15 @@ const { frontmatter } = Astro.props;
                             )
                         }
                     </time>
-                </div>
-                <div
-                    itemprop="articleBody"
-                    class="mt-10 prose dark:prose-invert mx-auto"
-                >
-                    <slot />
-                </div>
-                <h2 class="mt-10 text-3xl font-bold">Comments</h2>
-                <Comments client:only />
-            </article>
-        </div>
+                </p>
+            </header>
+            <div class="mt-10 prose dark:prose-invert mx-auto">
+                <slot />
+            </div>
+        </article>
+        <aside>
+            <h2 class="mt-10 text-3xl font-bold">Comments</h2>
+            <Comments client:only="svelte" />
+        </aside>
     </main>
 </Layout>
