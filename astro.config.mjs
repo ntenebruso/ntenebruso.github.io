@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 import { applyDefaultLayout } from "./src/plugins/layout";
 
-// https://astro.build/config
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
