@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
     import { theme } from "@lib/store";
     import { onMount } from "svelte";
 
-    let container;
-    let themeValue;
+    let container: HTMLDivElement;
+    let themeValue: string;
 
     theme.subscribe(value => {
         themeValue = value;
-        const iframe = document.querySelector("iframe.giscus-frame");
+        const iframe = <HTMLIFrameElement>document.querySelector("iframe.giscus-frame");
         if (iframe) {
             iframe.contentWindow.postMessage({
                 giscus: {
@@ -34,7 +34,6 @@
         script.setAttribute("data-theme", themeValue);
         script.setAttribute("data-lang", "en");
         script.setAttribute("crossorigin", "anonymous");
-        script.setAttribute("async", "1");
         container.append(script);
     });
 </script>
