@@ -9,7 +9,9 @@ module.exports = {
         extend: {
             colors: {
                 brand: {
+                    light: "#D7F3E5",
                     DEFAULT: "#00944D",
+                    dark: "#006333",
                 },
             },
             typography: ({ theme }) => ({

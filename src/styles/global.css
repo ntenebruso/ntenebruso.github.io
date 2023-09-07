@@ -15,7 +15,7 @@ a:hover {
 }
 
 .btn {
-    @apply inline-block text-zinc-200 font-semibold bg-brand cursor-pointer px-4 py-2 rounded-full transition;
+    @apply inline-block text-white dark:text-zinc-200 font-semibold bg-brand cursor-pointer px-4 py-2 rounded-full transition;
 }
 
 .btn:hover {

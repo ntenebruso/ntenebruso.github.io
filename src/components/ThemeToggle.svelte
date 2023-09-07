@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     import { theme } from "@lib/store.ts";
 
-    let themeValue;
+    let themeValue: string;
 
     theme.subscribe(value => {
         themeValue = value;
