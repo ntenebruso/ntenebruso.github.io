@@ -1,0 +1,22 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Contact Me">
+    <main class="max-w-3xl mx-auto px-5 mt-8 mb-5">
+        <h1 class="text-5xl font-bold text-center mb-5">Contact Me</h1>
+        <p class="text-center mb-10">To get in touch, you can fill out the form below or email me directly at <a class="font-bold text-brand" href="mailto:nick@ntenebruso.com">nick@ntenebruso.com</a>.</p>
+        <form action="https://formsubmit.co/b3835166127a8242b453ba074face6ff" method="POST">
+            <label for="name">Name</label>
+            <input class="mb-3" type="text" name="name" id="name" required>
+
+            <label for="email">Email</label>
+            <input class="mb-3" type="email" name="email" id="email" required>
+
+            <label for="message">Message</label>
+            <textarea class="h-52 mb-3" name="message" id="message" required></textarea>
+
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </main>
+</Layout>
