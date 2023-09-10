@@ -1,0 +1,74 @@
+---
+title: Migrating My Blog from Nextjs to Astro
+publishedAt: 2023-09-09
+author: Nick Tenebruso
+tags: [Web, Nextjs, Astro]
+summary: My thoughts on migrating my blog from Nextjs to Astro.
+---
+
+About a year ago, I decided to switch my blog from using Nextjs to a new framework called Astro. Here are the reasons why I decided to make the switch.
+
+## Comparison
+
+First of all, I'll give a brief overview of the two frameworks. Nextjs is a web framework built around React, which aims to provide SSR (server side rendering) and SSG (server side generation) out of the box. The basic idea of Nextjs is that React code will be generated or served as static HTML, then it will get "hydrated" to be interactive using Javascript. Astro is a web framework that lets you build components with a variety of different libraries, including React, Angular, Svelte, and Vue (although most code is written using Astro's component language). However, unlike Nextjs, Astro focuses on shipping as little Javascript as possible, meaning that these components will not ship JS and "hydrate" unless specifically designed to.
+
+## Why No Hydration is Better
+
+Shipping zero Javascript is _definitely_ not better for every use case, but for a static blog like the one I have, I found that it was far too overkill to ship the entire React runtime only for a tiny amount of interactivity (pretty much only the theme switcher). And while the current Astro site does ship Javascript, the compiled bundle is far smaller than the Nextjs version as all of it is written in vanilla JS or Svelte.
+
+## Performance
+
+The performance of both sites is extremely similar; however Astro has the slight edge with a 100% lighthouse report while Nextjs has a 99%. However, when taking into account the size of the bundled Javascript, Astro has the clear edge.
+
+<img
+    src="/images/lighthouse-astro.jpg"
+    alt="Astro Lighthouse Report"
+    class="mb-0"
+/>
+<span class="text-sm">_Astro lighthouse report_</span>
+
+<img
+    src="/images/lighthouse-nextjs.jpg"
+    alt="Nextjs Lighthouse Report"
+    class="mb-0"
+/>
+<span class="text-sm">_Nextjs lighthouse report_</span>
+
+## Developer Experience
+
+While Nextjs is my absolute favorite framework for building React apps, Astro's developer experience has been amazine because it lets you build components in whatever framework you like. Additionally, features like markdown to HTML support are built in to Astro, while I had to manually write a markdown parser in Nextjs. Here's an example of the code I needed to write in Nextjs vs Astro to get a list of blog posts.
+
+Nextjs:
+
+```javascript
+export async function getAllPosts() {
+    const files = fs
+        .readdirSync(postsPath)
+        .filter((file) => path.extname(file) == ".mdx");
+
+    return Promise.all(
+        files.map(async (slug) => {
+            const post = fs.readFileSync(path.join(postsPath, slug), "utf-8");
+            const { data } = matter(post);
+            return { ...data, slug: slug.replace(".mdx", "") };
+        })
+    );
+}
+```
+
+Astro:
+
+```typescript
+import { format } from "date-fns";
+
+const posts = (await Astro.glob("./posts/*.mdx")).sort((a, b) => {
+    return (
+        new Date(b.frontmatter.publishedAt).getTime() -
+        new Date(a.frontmatter.publishedAt).getTime()
+    );
+});
+```
+
+## Conclusion
+
+In conclusion, I've found Astro to be a great framework for building my blog, as it focuses more on server side generation while shipping as little Javascript as possible. Overall, I would definitely recommend it to anyone building a static site or blog.

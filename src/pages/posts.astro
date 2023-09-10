@@ -5,8 +5,8 @@ import { format } from "date-fns";
 
 const posts = (await Astro.glob("./posts/*.mdx")).sort((a, b) => {
     return (
-        new Date(a.frontmatter.publishedAt).getTime() -
-        new Date(b.frontmatter.publishedAt).getTime()
+        new Date(b.frontmatter.publishedAt).getTime() -
+        new Date(a.frontmatter.publishedAt).getTime()
     );
 });
 ---
