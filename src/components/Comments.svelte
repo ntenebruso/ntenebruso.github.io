@@ -34,6 +34,7 @@
         script.setAttribute("data-theme", themeValue);
         script.setAttribute("data-lang", "en");
         script.setAttribute("crossorigin", "anonymous");
+        script.setAttribute("async", "true")
         container.append(script);
     });
 </script>
