@@ -9,18 +9,18 @@ import ThemeToggle from "./ThemeToggle.svelte";
         <ThemeToggle client:only="svelte" />
         <button
             id="menu-btn-open"
-            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 block md:hidden leading-[0px]"
+            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-300 dark:border-zinc-700 block md:hidden leading-[0px]"
             aria-label="Open menu"
         >
             <i class="fa-solid fa-bars"></i>
         </button>
         <nav
             id="menu"
-            class="flex items-center bg-gray-200 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-gray-300 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
+            class="flex items-center bg-zinc-100 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-zinc-200 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
         >
             <button
                 id="menu-btn-close"
-                class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-gray-200 border-[1px] border-gray-300 dark:border-zinc-700 block md:hidden absolute top-2 right-2"
+                class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 block md:hidden absolute top-2 right-2"
                 ><i class="fa-solid fa-xmark"></i>
             </button>
             <ul
