@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle.svelte";
 >
     <span class="font-bold text-3xl">Nick Tenebruso</span>
     <div class="flex gap-x-3 relative">
-        <ThemeToggle client:only="svelte" />
+        <ThemeToggle client:only="svelte" transition:persist />
         <button
             id="menu-btn-open"
             class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 md:hidden leading-[0px] text-[24px] flex items-center justify-center"
@@ -44,15 +44,17 @@ import ThemeToggle from "./ThemeToggle.svelte";
 </header>
 
 <script is:inline>
-    const menuOpenBtn = document.getElementById("menu-btn-open");
-    const menuCloseBtn = document.getElementById("menu-btn-close");
-    const menu = document.getElementById("menu");
+    document.addEventListener("astro:page-load", () => {
+        const menuOpenBtn = document.getElementById("menu-btn-open");
+        const menuCloseBtn = document.getElementById("menu-btn-close");
+        const menu = document.getElementById("menu");
 
-    menuOpenBtn.addEventListener("click", () => {
-        menu.classList.remove("-translate-y-full");
-    });
+        menuOpenBtn.addEventListener("click", () => {
+            menu.classList.remove("-translate-y-full");
+        });
 
-    menuCloseBtn.addEventListener("click", () => {
-        menu.classList.add("-translate-y-full");
+        menuCloseBtn.addEventListener("click", () => {
+            menu.classList.add("-translate-y-full");
+        });
     });
 </script>

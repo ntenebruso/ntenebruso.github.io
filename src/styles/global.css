@@ -36,3 +36,25 @@ input[type="email"],
 textarea {
     @apply block w-full rounded-md p-2 bg-neutral-100 dark:bg-zinc-800 border-[1px] border-gray-300 dark:border-zinc-700 outline-none focus:ring-brand focus:ring-2;
 }
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}

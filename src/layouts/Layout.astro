@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions, slide } from "astro:transitions";
+
 import "../styles/global.css";
 
 import "@fontsource-variable/inter";
@@ -7,17 +9,35 @@ import "@fontsource-variable/montserrat";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-import "lucide-static/font/lucide.css"
+import "lucide-static/font/lucide.css";
 
 export interface Props {
     title: string;
     description?: string;
 }
 
+const slideAnim = {
+    old: {
+        name: "fadeOut",
+        duration: "0.1s",
+    },
+    new: {
+        name: "slideIn",
+        duration: "0.2s",
+        easing: "ease",
+        fillMode: "backwards",
+    },
+};
+
+const customSlide = {
+    forwards: slideAnim,
+    backwards: slideAnim,
+};
+
 const { title, description } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth dark">
     <head>
         <meta charset="UTF-8" />
@@ -26,22 +46,33 @@ const { title, description } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <script is:inline>
-            if (
-                localStorage.getItem("theme") == "dark" ||
-                !localStorage.getItem("theme")
-            ) {
-                document.documentElement.classList.add("dark");
-            } else {
-                document.documentElement.classList.remove("dark");
+            function getDarkMode(document) {
+                if (
+                    localStorage.getItem("theme") == "dark" ||
+                    !localStorage.getItem("theme")
+                ) {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                }
             }
+
+            getDarkMode(document);
+
+            document.addEventListener("astro:before-swap", (e) => {
+                getDarkMode(e.newDocument);
+            });
         </script>
         {description && <meta name="description" content={description} />}
+        <ViewTransitions />
     </head>
     <body
         class="antialiased bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-300 selection:bg-blue-700 selection:text-white"
     >
-        <Header />
-        <slot />
-        <Footer />
+        <Header transition:persist />
+        <div transition:animate={customSlide}>
+            <slot />
+            <Footer />
+        </div>
     </body>
 </html>
