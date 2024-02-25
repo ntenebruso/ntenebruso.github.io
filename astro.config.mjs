@@ -16,4 +16,5 @@ export default defineConfig({
         syntaxHighlight: "prism",
         remarkPlugins: [applyDefaultLayout],
     },
+    prefetch: false,
 });
