@@ -1,6 +1,4 @@
 ---
-import { ViewTransitions, slide } from "astro:transitions";
-
 import "../styles/global.css";
 
 import "@fontsource-variable/inter";
@@ -16,35 +14,11 @@ export interface Props {
     description?: string;
 }
 
-const slideAnim = {
-    old: {
-        name: "fadeOut",
-        duration: "0.1s",
-        easing: "linear",
-        fillMode: "forwards",
-    },
-    new: {
-        name: "slideIn",
-        duration: "0.2s",
-        easing: "ease",
-        fillMode: "backwards",
-    },
-};
-
-const customSlide = {
-    forwards: slideAnim,
-    backwards: slideAnim,
-};
-
 const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html
-    lang="en"
-    class="scroll-smooth dark overflow-y-scroll"
-    transition:animate="none"
->
+<html lang="en" class="scroll-smooth dark overflow-y-scroll">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -52,7 +26,7 @@ const { title, description } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <script is:inline>
-            function getDarkMode(document) {
+            document.addEventListener("DOMContentLoaded", () => {
                 if (
                     localStorage.getItem("theme") == "dark" ||
                     !localStorage.getItem("theme")
@@ -61,24 +35,17 @@ const { title, description } = Astro.props;
                 } else {
                     document.documentElement.classList.remove("dark");
                 }
-            }
-
-            getDarkMode(document);
-
-            document.addEventListener("astro:before-swap", (e) => {
-                getDarkMode(e.newDocument);
             });
         </script>
         {description && <meta name="description" content={description} />}
-        <ViewTransitions />
     </head>
     <body
         class="antialiased bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-300 selection:bg-blue-700 selection:text-white"
     >
-        <Header transition:persist />
-        <div transition:animate={customSlide}>
+        <Header />
+        <div id="swup" class="transition-slide">
             <slot />
-            <Footer />
         </div>
+        <Footer />
     </body>
 </html>

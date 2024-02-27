@@ -37,24 +37,15 @@ textarea {
     @apply block w-full rounded-md p-2 bg-neutral-100 dark:bg-zinc-800 border-[1px] border-gray-300 dark:border-zinc-700 outline-none focus:ring-brand focus:ring-2;
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
+/* TRANSITIONS */
 
-    to {
-        opacity: 0;
-    }
+html.is-changing .transition-slide {
+    transition: transform 0.2s, opacity 0.1s;
+    transform: translateY(0px);
+    opacity: 1;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0%);
-    }
+html.is-animating .transition-slide {
+    transform: translateY(25px);
+    opacity: 0;
 }

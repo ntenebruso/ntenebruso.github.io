@@ -9,9 +9,18 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 import svelte from "@astrojs/svelte";
 
+import swup from "@swup/astro";
+
 // https://astro.build/config
 export default defineConfig({
-    integrations: [tailwind(), mdx(), svelte()],
+    integrations: [
+        tailwind(),
+        mdx(),
+        svelte(),
+        swup({
+            containers: ["#swup", "#siteNav"],
+        }),
+    ],
     markdown: {
         syntaxHighlight: "prism",
         remarkPlugins: [applyDefaultLayout],

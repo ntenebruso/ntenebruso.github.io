@@ -1,6 +1,6 @@
 <script lang="ts">
     import { theme } from "@lib/store.ts";
-
+    
     let themeValue: string;
 
     theme.subscribe(value => {

@@ -8,9 +8,9 @@ import ThemeToggle from "./ThemeToggle.svelte";
 >
     <span class="font-bold text-3xl">Nick Tenebruso</span>
     <div class="flex gap-x-3 relative">
-        <ThemeToggle client:only="svelte" transition:persist />
+        <ThemeToggle client:only="svelte" />
         <button
-            id="menu-btn-open"
+            id="menuOpenBtn"
             class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 md:hidden leading-[0px] text-[24px] flex items-center justify-center"
             aria-label="Open menu"
         >
@@ -18,16 +18,17 @@ import ThemeToggle from "./ThemeToggle.svelte";
         </button>
         <nav
             id="menu"
-            class="flex items-center bg-zinc-200 md:bg-zinc-100 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-zinc-200 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
+            class="z-10 flex items-center bg-zinc-200 md:bg-zinc-100 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-zinc-200 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
         >
             <button
-                id="menu-btn-close"
+                id="menuCloseBtn"
                 class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 md:hidden absolute top-2 right-2 text-[24px] flex items-center justify-center"
             >
                 <i class="icon-x"></i>
             </button>
             <ul
                 class="flex flex-col md:flex-row gap-x-4 gap-y-10 font-semibold mx-auto py-10 md:py-0 text-3xl md:text-base"
+                id="siteNav"
             >
                 <li>
                     <NavLink href="/">Home</NavLink>
@@ -44,9 +45,10 @@ import ThemeToggle from "./ThemeToggle.svelte";
 </header>
 
 <script is:inline>
-    document.addEventListener("astro:page-load", () => {
-        const menuOpenBtn = document.getElementById("menu-btn-open");
-        const menuCloseBtn = document.getElementById("menu-btn-close");
+    function init() {
+        const siteNav = document.getElementById("siteNav");
+        const menuOpenBtn = document.getElementById("menuOpenBtn");
+        const menuCloseBtn = document.getElementById("menuCloseBtn");
         const menu = document.getElementById("menu");
 
         menuOpenBtn.addEventListener("click", () => {
@@ -56,5 +58,15 @@ import ThemeToggle from "./ThemeToggle.svelte";
         menuCloseBtn.addEventListener("click", () => {
             menu.classList.add("-translate-y-full");
         });
-    });
+
+        Array.from(siteNav.children).forEach((child) => {
+            child.addEventListener("click", () => {
+                menu.classList.add("-translate-y-full");
+            });
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+
+    document.addEventListener("swup:content:replace", init);
 </script>
