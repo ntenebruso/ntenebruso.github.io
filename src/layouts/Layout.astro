@@ -43,9 +43,19 @@ const { title, description } = Astro.props;
         class="antialiased bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-300 selection:bg-blue-700 selection:text-white"
     >
         <Header />
-        <div id="swup" class="transition-slide">
+        <div id="swup" class="transition-slide outline-none">
             <slot />
         </div>
         <Footer />
     </body>
 </html>
+
+<script>
+    import SwupHeadPlugin from "@swup/head-plugin";
+
+    document.addEventListener("swup:enable", () => {
+        window.swup.use(new SwupHeadPlugin({
+            awaitAssets: true
+        }));
+    })
+</script>

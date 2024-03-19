@@ -9,6 +9,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 import svelte from "@astrojs/svelte";
 
+// Swup
 import swup from "@swup/astro";
 
 // https://astro.build/config
@@ -19,6 +20,7 @@ export default defineConfig({
         svelte(),
         swup({
             containers: ["#swup", "#siteNav"],
+            globalInstance: true,
         }),
     ],
     markdown: {

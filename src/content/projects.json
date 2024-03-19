@@ -1,30 +1,62 @@
 [
     {
+        "id": "jester",
+        "name": "Jester Gesture Recognition Model",
+        "description": "A hand gesture recognition AI model that was trained with the 20bn Jester Dataset using a 3D Convolutional Neural Network.",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/Jester-Gesture-Recognition/"
+        },
+        "tags": ["Neural Networks", "Python", "Computer Vision"]
+    },
+    {
         "id": "arctic-os",
         "name": "Arctic OS",
         "description": "An arch-based linux distribution with a graphical installer (made and maintained as a hobby). Currently working to make new GNOME and KDE Plasma profiles alongside the existing XFCE ISO.",
-        "more": "https://gitlab.com/arctic-os/",
+        "button": {
+            "text": "More information",
+            "url": "https://gitlab.com/arctic-os/"
+        },
         "tags": ["Linux"]
+    },
+    {
+        "id": "rust-http-server",
+        "name": "Rust HTTP Server",
+        "description": "An HTTP server library written in vanilla Rust with zero dependencies.",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/rust-http-server/"
+        },
+        "tags": ["Rust", "Low-Level", "Web"]
     },
     {
         "id": "redlight",
         "name": "Redlight",
         "description": "A faster & more private client for Reddit.",
-        "github": "https://github.com/ntenebruso/redlight",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/redlight"
+        },
         "tags": ["Web", "React", "NextJS", "API"]
     },
     {
         "id": "typetest",
         "name": "TypeTest",
         "description": "A web application that lets you view and save your typing stats such as WPM and accuracy in detail.",
-        "github": "https://github.com/ntenebruso/TypeTest",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/TypeTest"
+        },
         "tags": ["Web", "Vue", "Firebase"]
     },
     {
         "id": "chatt",
         "name": "Chatt",
         "description": "A real-time chat application with saved rooms and accounts.",
-        "github": "https://github.com/ntenebruso/chat-app",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/chat-app"
+        },
         "tags": ["Web", "Svelte", "Sapper", "Full-Stack"]
     }
 ]
