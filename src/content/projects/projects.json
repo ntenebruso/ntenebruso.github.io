@@ -1,5 +1,15 @@
 [
     {
+        "id": "ewaste",
+        "name": "E-Waste PSA Website",
+        "description": "A PSA website outlining the dangers of e-waste, as well as steps to keep e-waste out of landfills.",
+        "button": {
+            "text": "View Website",
+            "url": "https://ewastepsa.ntenebruso.com/"
+        },
+        "tags": ["Next.js", "React"]
+    },
+    {
         "id": "jester",
         "name": "Jester Gesture Recognition Model",
         "description": "A hand gesture recognition AI model that was trained with the 20bn Jester Dataset using a 3D Convolutional Neural Network.",
@@ -37,7 +47,7 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/redlight"
         },
-        "tags": ["Web", "React", "NextJS", "API"]
+        "tags": ["Web", "React", "Next.js", "API"]
     },
     {
         "id": "typetest",

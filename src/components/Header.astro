@@ -44,9 +44,8 @@ import ThemeToggle from "./ThemeToggle.svelte";
     </div>
 </header>
 
-<script is:inline>
-    function init() {
-        const siteNav = document.getElementById("siteNav");
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
         const menuOpenBtn = document.getElementById("menuOpenBtn");
         const menuCloseBtn = document.getElementById("menuCloseBtn");
         const menu = document.getElementById("menu");
@@ -58,15 +57,5 @@ import ThemeToggle from "./ThemeToggle.svelte";
         menuCloseBtn.addEventListener("click", () => {
             menu.classList.add("-translate-y-full");
         });
-
-        Array.from(siteNav.children).forEach((child) => {
-            child.addEventListener("click", () => {
-                menu.classList.add("-translate-y-full");
-            });
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", init);
-
-    document.addEventListener("swup:content:replace", init);
+    });
 </script>

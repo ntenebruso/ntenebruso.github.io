@@ -26,16 +26,9 @@ const { title, description } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <script is:inline>
-            document.addEventListener("DOMContentLoaded", () => {
-                if (
-                    localStorage.getItem("theme") == "dark" ||
-                    !localStorage.getItem("theme")
-                ) {
-                    document.documentElement.classList.add("dark");
-                } else {
-                    document.documentElement.classList.remove("dark");
-                }
-            });
+            if (localStorage.getItem("theme") && localStorage.getItem("theme") !== "dark") {
+                document.documentElement.classList.remove("dark");
+            }
         </script>
         {description && <meta name="description" content={description} />}
     </head>
@@ -43,19 +36,7 @@ const { title, description } = Astro.props;
         class="antialiased bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-300 selection:bg-blue-700 selection:text-white"
     >
         <Header />
-        <div id="swup" class="transition-slide outline-none">
-            <slot />
-        </div>
+        <slot />
         <Footer />
     </body>
 </html>
-
-<script>
-    import SwupHeadPlugin from "@swup/head-plugin";
-
-    document.addEventListener("swup:enable", () => {
-        window.swup.use(new SwupHeadPlugin({
-            awaitAssets: true
-        }));
-    })
-</script>
