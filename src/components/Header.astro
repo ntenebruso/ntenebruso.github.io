@@ -6,7 +6,19 @@ import ThemeToggle from "./ThemeToggle.svelte";
 <header
     class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3 font-display"
 >
-    <span class="font-bold text-3xl">Nick Tenebruso</span>
+    <a
+        href="/"
+        class="font-bold text-4xl sm:text-3xl hover:no-underline text-inherit group"
+    >
+        <span class="text-zinc-500 dark:text-zinc-700 group-hover:text-brand"
+            >&#123;
+        </span>
+        <span class="hidden sm:inline">Nick Tenebruso</span>
+        <span class="inline sm:hidden">NT</span>
+        <span class="text-zinc-500 dark:text-zinc-700 group-hover:text-brand">
+            &#125;</span
+        >
+    </a>
     <div class="flex gap-x-3 relative">
         <ThemeToggle client:only="svelte" />
         <button
