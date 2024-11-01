@@ -1,5 +1,15 @@
 [
     {
+        "id": "nix-config",
+        "name": "Nix Configuration",
+        "description": "The NixOS configuration that I use on my personal machines.",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/nixos-config"
+        },
+        "tags": ["Linux", "NixOS"]
+    },
+    {
         "id": "ewaste",
         "name": "E-Waste PSA Website",
         "description": "A PSA website outlining the dangers of e-waste, as well as steps to keep e-waste out of landfills.",
@@ -12,7 +22,7 @@
     {
         "id": "jester",
         "name": "Jester Gesture Recognition Model",
-        "description": "A hand gesture recognition AI model that was trained with the 20bn Jester Dataset using a 3D Convolutional Neural Network.",
+        "description": "A hand gesture recognition ML model that was trained with the 20bn Jester Dataset using a 3D Convolutional Neural Network.",
         "button": {
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/Jester-Gesture-Recognition/"
