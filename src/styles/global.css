@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    font-size: 16px;
+}
+
 h1,
 h2,
 h3,
@@ -40,7 +44,9 @@ textarea {
 /* TRANSITIONS */
 
 html.is-changing .transition-slide {
-    transition: transform 0.2s, opacity 0.1s;
+    transition:
+        transform 0.2s,
+        opacity 0.1s;
     transform: translateY(0px);
     opacity: 1;
 }
