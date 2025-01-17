@@ -30,7 +30,7 @@ import ThemeToggle from "./ThemeToggle.svelte";
         </button>
         <nav
             id="menu"
-            class="z-10 flex items-center bg-zinc-200 md:bg-zinc-100 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-zinc-200 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
+            class="group z-10 flex items-center bg-zinc-200 md:bg-zinc-100 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-zinc-200 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
         >
             <button
                 id="menuCloseBtn"
@@ -51,6 +51,11 @@ import ThemeToggle from "./ThemeToggle.svelte";
                 <li>
                     <NavLink href="/contact">Contact</NavLink>
                 </li>
+                <div
+                    id="indicator"
+                    class="bg-brand h-1 absolute transition-all -z-10"
+                >
+                </div>
             </ul>
         </nav>
     </div>
@@ -69,5 +74,36 @@ import ThemeToggle from "./ThemeToggle.svelte";
         menuCloseBtn.addEventListener("click", () => {
             menu.classList.add("-translate-y-full");
         });
+    });
+</script>
+
+<script>
+    const menu = document.getElementById("menu");
+    const indicator = document.getElementById("indicator");
+    const pathname = location.pathname;
+    let activeChild;
+
+    function setIndicator(child) {
+        indicator.style.left = child.offsetLeft + "px";
+        indicator.style.top = child.offsetHeight + 5 + "px";
+        indicator.style.width = child.offsetWidth + "px";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        Array.from(document.querySelectorAll("#menu a")).forEach((child) => {
+            if (pathname.includes(child.pathname)) {
+                activeChild = child;
+            }
+
+            child.addEventListener("mouseover", () => {
+                setIndicator(child);
+            });
+        });
+
+        setIndicator(activeChild);
+    });
+
+    menu.addEventListener("mouseleave", () => {
+        setIndicator(activeChild);
     });
 </script>
