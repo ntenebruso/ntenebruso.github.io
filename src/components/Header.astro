@@ -51,12 +51,12 @@ import ThemeToggle from "./ThemeToggle.svelte";
                 <li>
                     <NavLink href="/contact">Contact</NavLink>
                 </li>
-                <div
-                    id="indicator"
-                    class="bg-brand h-1 absolute transition-all -z-10 hidden md:inline-block"
-                >
-                </div>
             </ul>
+            <div
+                id="indicator"
+                class="bg-brand h-1 absolute bottom-0 rounded-full transition-all -z-10 hidden md:inline-block"
+            >
+            </div>
         </nav>
     </div>
 </header>
@@ -85,11 +85,10 @@ import ThemeToggle from "./ThemeToggle.svelte";
 
     function setIndicator(child) {
         indicator.style.left = child.offsetLeft + "px";
-        indicator.style.top = child.offsetHeight + 5 + "px";
         indicator.style.width = child.offsetWidth + "px";
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("load", () => {
         Array.from(document.querySelectorAll("#menu a")).forEach((child) => {
             if (pathname.includes(child.pathname)) {
                 activeChild = child;
