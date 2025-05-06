@@ -2,13 +2,10 @@
 import Layout from "@layouts/Layout.astro";
 import Tags from "@components/Tags.astro";
 import { format } from "date-fns";
+import { getCollection } from "astro:content";
 
-const posts = (await Astro.glob("./posts/*.mdx")).sort((a, b) => {
-    return (
-        new Date(b.frontmatter.publishedAt).getTime() -
-        new Date(a.frontmatter.publishedAt).getTime()
-    );
-});
+const posts = await getCollection("blog")
+posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 ---
 
 <Layout title="Nick Tenebruso's Blog">
@@ -18,22 +15,22 @@ const posts = (await Astro.glob("./posts/*.mdx")).sort((a, b) => {
             posts.map((post) => (
                 <a
                     class="block text-current hover:no-underline mt-4 bg-zinc-100 dark:bg-zinc-800 mx-auto max-w-3xl p-4 rounded-lg border-[1px] border-zinc-200 dark:border-zinc-700 transition-transform duration-300 hover:-translate-y-1"
-                    href={post.url}
+                    href={`/posts/${post.id}`}
                 >
                     <div class="flex justify-between">
                         <Tags
-                            tags={post.frontmatter.tags}
+                            tags={post.data.tags}
                             class="bg-brand text-white dark:text-zinc-200 px-2 rounded-md"
                         />
                         <p class="inline-block text-zinc-500 dark:text-zinc-400 text-right">
                             {format(
-                                new Date(post.frontmatter.publishedAt),
+                                new Date(post.data.publishedAt),
                                 "MMMM do, yyyy"
                             )}
                         </p>
                     </div>
                     <h2 class="text-3xl font-bold mt-3">
-                        {post.frontmatter.title}
+                        {post.data.title}
                     </h2>
                 </a>
             ))

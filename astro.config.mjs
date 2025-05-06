@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import { applyDefaultLayout } from "./src/plugins/layout";
 
 import tailwind from "@astrojs/tailwind";
 
@@ -14,7 +13,6 @@ export default defineConfig({
     integrations: [tailwind(), mdx(), svelte()],
     markdown: {
         syntaxHighlight: "prism",
-        remarkPlugins: [applyDefaultLayout],
     },
     prefetch: false,
 });

@@ -1,32 +1,43 @@
 ---
+import { getCollection, render } from "astro:content";
 import "@styles/prism.css";
-import Layout from "./Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Tags from "@components/Tags.astro";
 import Comments from "@components/Comments.svelte";
 import { format } from "date-fns";
 
-const { frontmatter } = Astro.props;
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+
+    return posts.map(post => ({
+        params: { id: post.id },
+        props: { post }
+    }))
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post)
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.summary}>
+<Layout title={post.data.title} description={post.data.summary}>
     <main class="max-w-5xl mx-auto px-5 mt-10">
         <article class="mx-auto max-w-3xl">
             <header>
                 <div class="flex">
                     <Tags
-                        tags={frontmatter.tags}
+                        tags={post.data.tags}
                         class="bg-brand text-white dark:text-zinc-200 px-2 rounded-md"
                     />
                 </div>
                 <h1 class="mt-4 text-5xl font-bold">
-                    {frontmatter.title}
+                    {post.data.title}
                 </h1>
                 <p class="block text-zinc-500 dark:text-zinc-400 mt-2">
-                    <span class="inline-block mr-2 bg-brand-light dark:bg-brand dark:bg-opacity-20 text-brand-dark dark:text-brand px-2 py-1 rounded-full font-semibold">{frontmatter.author}</span>
-                    <time datetime={frontmatter.publishedAt}>
+                    <span class="inline-block mr-2 bg-brand-light dark:bg-brand dark:bg-opacity-20 text-brand-dark dark:text-brand px-2 py-1 rounded-full font-semibold">{post.data.author}</span>
+                    <time datetime={post.data.publishedAt.toISOString()}>
                         {
                             format(
-                                new Date(frontmatter.publishedAt),
+                                new Date(post.data.publishedAt),
                                 "MMMM do, yyyy"
                             )
                         }
@@ -34,7 +45,7 @@ const { frontmatter } = Astro.props;
                 </p>
             </header>
             <div class="max-w-none mt-10 prose dark:prose-invert mx-auto">
-                <slot />
+                <Content />
             </div>
         </article>
         <aside>

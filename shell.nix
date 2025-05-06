@@ -3,6 +3,6 @@
 pkgs.mkShell {
   nativeBuildInputs = with pkgs.buildPackages; [
     nodejs_20
-    yarn
+    pnpm
   ];
 }

@@ -3,5 +3,5 @@
   "tabWidth": 4,
   "semi": true,
   "singleQuote": false,
-  "plugins": ["prettier-plugin-astro"]
+  "_plugins": ["prettier-plugin-astro"]
 }

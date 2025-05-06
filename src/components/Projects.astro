@@ -1,24 +1,26 @@
 ---
-import projects from "@content/projects/projects.json";
+import { getCollection } from "astro:content";
 import Tags from "./Tags.astro";
+
+const projects = await getCollection("projects");
 ---
 
 {
     projects.map((project) => (
         <div
             class="bg-zinc-100 dark:bg-zinc-800 py-5 mb-5 rounded-lg max-w-5xl mx-auto px-5"
-            id={project.id}
+            id={project.data.id}
         >
             <Tags
-                tags={project.tags}
+                tags={project.data.tags}
                 class="bg-neutral-200 dark:bg-zinc-700 rounded-md text-sm px-1 py-[2px]"
             />
-            <h3 class="font-bold text-2xl mt-2">{project.name}</h3>
-            <p>{project.description}</p>
+            <h3 class="font-bold text-2xl mt-2">{project.data.name}</h3>
+            <p>{project.data.description}</p>
             <div class="mt-2">
-                {project.button && (
-                    <a href={project.button.url} target="_blank">
-                        <button class="btn">{project.button.text}</button>
+                {project.data.button && (
+                    <a href={project.data.button.url} target="_blank">
+                        <button class="btn">{project.data.button.text}</button>
                     </a>
                 )}
             </div>
