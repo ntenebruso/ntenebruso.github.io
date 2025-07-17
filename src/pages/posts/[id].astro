@@ -7,16 +7,18 @@ import Comments from "@components/Comments.svelte";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-    const posts = await getCollection("blog");
+    const posts = await getCollection("blog", ({ data }) => {
+        return data.draft !== true;
+    });
 
-    return posts.map(post => ({
+    return posts.map((post) => ({
         params: { id: post.id },
-        props: { post }
-    }))
+        props: { post },
+    }));
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post)
+const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title} description={post.data.summary}>
@@ -33,7 +35,10 @@ const { Content } = await render(post)
                     {post.data.title}
                 </h1>
                 <p class="block text-zinc-500 dark:text-zinc-400 mt-2">
-                    <span class="inline-block mr-2 bg-brand-light dark:bg-brand dark:bg-opacity-20 text-brand-dark dark:text-brand px-2 py-1 rounded-full font-semibold">{post.data.author}</span>
+                    <span
+                        class="inline-block mr-2 bg-brand-light dark:bg-brand dark:bg-opacity-20 text-brand-dark dark:text-brand px-2 py-1 rounded-full font-semibold"
+                        >{post.data.author}</span
+                    >
                     <time datetime={post.data.publishedAt.toISOString()}>
                         {
                             format(
@@ -54,3 +59,31 @@ const { Content } = await render(post)
         </aside>
     </main>
 </Layout>
+
+<style is:global>
+    .spoiler {
+        position: relative;
+    }
+
+    .spoiler::before {
+        content: "Spoiler";
+        z-index: 5;
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        cursor: pointer;
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    document.querySelectorAll(".spoiler").forEach((node) => {
+        node.addEventListener("click", () => {
+            node.classList.remove("spoiler");
+        });
+    });
+</script>

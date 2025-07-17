@@ -4,8 +4,10 @@ import Tags from "@components/Tags.astro";
 import { format } from "date-fns";
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog")
-posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+const posts = await getCollection("blog", ({ data }) => data.draft !== true);
+posts.sort(
+    (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
 ---
 
 <Layout title="Nick Tenebruso's Blog">
@@ -29,9 +31,7 @@ posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
                             )}
                         </p>
                     </div>
-                    <h2 class="text-3xl font-bold mt-3">
-                        {post.data.title}
-                    </h2>
+                    <h2 class="text-3xl font-bold mt-3">{post.data.title}</h2>
                 </a>
             ))
         }
