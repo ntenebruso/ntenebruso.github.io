@@ -8,6 +8,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 import "lucide-static/font/lucide.css";
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
     title: string;
@@ -26,7 +27,10 @@ const { title, description } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <script is:inline>
-            if (localStorage.getItem("theme") && localStorage.getItem("theme") !== "dark") {
+            if (
+                localStorage.getItem("theme") &&
+                localStorage.getItem("theme") !== "dark"
+            ) {
                 document.documentElement.classList.remove("dark");
             }
         </script>
@@ -36,7 +40,9 @@ const { title, description } = Astro.props;
         class="antialiased bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-300 selection:bg-blue-700 selection:text-white"
     >
         <Header />
-        <slot />
+        <div id="swup" class="transition-slide">
+            <slot />
+        </div>
         <Footer />
     </body>
 </html>

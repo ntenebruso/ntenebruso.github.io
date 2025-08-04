@@ -15,8 +15,11 @@ if (href == "/") {
 
 <a
     href={href}
-    class={`hover:no-underline transition-colors hover:!text-zinc-800 hover:dark:!text-zinc-300 ${isActive ? "text-brand md:text-zinc-800 md:dark:text-zinc-300 group-hover:text-zinc-700 group-hover:dark:text-zinc-400" : "text-zinc-700 dark:text-zinc-400"}`}
+    class={`hover:no-underline text-zinc-700 dark:text-zinc-400`}
     {...props}
 >
-    <slot />
+    <span
+        class={`transition-colors ${isActive && "active"} hover:!text-zinc-800 hover:dark:!text-zinc-300`}
+        ><slot /></span
+    >
 </a>

@@ -5,6 +5,7 @@ import ThemeToggle from "./ThemeToggle.svelte";
 
 <header
     class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3 font-display"
+    data-swup-persist="header"
 >
     <a
         href="/"
@@ -63,9 +64,9 @@ import ThemeToggle from "./ThemeToggle.svelte";
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const menuOpenBtn = document.getElementById("menuOpenBtn");
-        const menuCloseBtn = document.getElementById("menuCloseBtn");
-        const menu = document.getElementById("menu");
+        const menuOpenBtn = document.getElementById("menuOpenBtn")!;
+        const menuCloseBtn = document.getElementById("menuCloseBtn")!;
+        const menu = document.getElementById("menu")!;
 
         menuOpenBtn.addEventListener("click", () => {
             menu.classList.remove("-translate-y-full");
@@ -78,18 +79,22 @@ import ThemeToggle from "./ThemeToggle.svelte";
 </script>
 
 <script>
-    const menu = document.getElementById("menu");
-    const indicator = document.getElementById("indicator");
+    const menu = document.getElementById("menu")!;
+    const indicator = document.getElementById("indicator")!;
     const pathname = location.pathname;
-    let activeChild;
+    let activeChild: HTMLAnchorElement;
 
-    function setIndicator(child) {
+    function setIndicator(child: HTMLElement) {
         indicator.style.left = child.offsetLeft + "px";
         indicator.style.width = child.offsetWidth + "px";
     }
 
     window.addEventListener("load", () => {
-        Array.from(document.querySelectorAll("#menu a")).forEach((child) => {
+        Array.from(
+            document.querySelectorAll(
+                "#menu a"
+            ) as NodeListOf<HTMLAnchorElement>
+        ).forEach((child) => {
             if (pathname.includes(child.pathname)) {
                 activeChild = child;
             }
@@ -97,6 +102,26 @@ import ThemeToggle from "./ThemeToggle.svelte";
             child.addEventListener("mouseover", () => {
                 setIndicator(child);
             });
+        });
+
+        setIndicator(activeChild);
+    });
+
+    window.addEventListener("swup:page:load", () => {
+        Array.from(
+            document.querySelectorAll(
+                "#menu a"
+            ) as NodeListOf<HTMLAnchorElement>
+        ).forEach((child) => {
+            child.firstElementChild!.classList.remove("active");
+            if (
+                (child.pathname == "/" && location.pathname == "/") ||
+                (child.pathname != "/" &&
+                    location.pathname.includes(child.pathname))
+            ) {
+                activeChild = child;
+                child.firstElementChild!.classList.add("active");
+            }
         });
 
         setIndicator(activeChild);
