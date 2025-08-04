@@ -81,9 +81,14 @@ const { Content } = await render(post);
 </style>
 
 <script>
-    document.querySelectorAll(".spoiler").forEach((node) => {
-        node.addEventListener("click", () => {
-            node.classList.remove("spoiler");
+    function handler() {
+        document.querySelectorAll(".spoiler").forEach((node) => {
+            node.addEventListener("click", () => {
+                node.classList.remove("spoiler");
+            });
         });
-    });
+    }
+    document.addEventListener("DOMContentLoaded", handler);
+
+    window.addEventListener("swup:page:view", handler);
 </script>

@@ -18,8 +18,8 @@ export default defineConfig({
         mdx(),
         svelte(),
         swup({
+            accessibility: true,
             theme: false,
-            // parallel: true,
         }),
     ],
     markdown: {
