@@ -58,6 +58,23 @@ const { Content } = await render(post);
             <Comments client:only="svelte" />
         </aside>
     </main>
+
+    <script is:inline data-swup-reload-script>
+        function handler() {
+            console.log("RUNNING");
+            document.querySelectorAll(".spoiler").forEach((node) => {
+                node.addEventListener("click", () => {
+                    node.classList.remove("spoiler");
+                });
+            });
+        }
+
+        if (document.readyState == "complete") {
+            handler();
+        } else {
+            document.addEventListener("DOMContentLoaded", handler);
+        }
+    </script>
 </Layout>
 
 <style is:global>
@@ -79,16 +96,3 @@ const { Content } = await render(post);
         overflow: hidden;
     }
 </style>
-
-<script>
-    function handler() {
-        document.querySelectorAll(".spoiler").forEach((node) => {
-            node.addEventListener("click", () => {
-                node.classList.remove("spoiler");
-            });
-        });
-    }
-    document.addEventListener("DOMContentLoaded", handler);
-
-    window.addEventListener("swup:page:view", handler);
-</script>

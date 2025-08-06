@@ -28,15 +28,21 @@ import Layout from "@layouts/Layout.astro";
             <button class="btn text-lg" type="submit">Submit</button>
         </form>
         <h2 class="text-3xl font-bold mb-5 text-center">Email Me</h2>
-        <p class="text-lg">
-            Main email: <a href="mailto:nick@ntenebruso.com" class="font-bold"
-                >nick@ntenebruso.com</a
-            ><br />
-            Backup email: <a
-                href="mailto:nickten2006@gmail.com"
-                class="font-bold">nickten2006@gmail.com</a
-            ><br />
-            <a href="/pubkey.asc">Download my PGP key</a>
+        <p>
+            <div
+                class="flex flex-wrap items-center justify-center gap-2 text-lg"
+            >
+                <a href="mailto:nick@ntenebruso.com" class="btn"
+                    ><i class="icon-mail align-middle leading-none"></i> nick@ntenebruso.com</a
+                >
+                <a href="mailto:nickten2006@gmail.com" class="btn secondary"
+                    ><i class="icon-mail align-middle leading-none"></i> nickten2006@gmail.com</a
+                >
+                <a href="/pubkey.asc" download class="btn"
+                    ><i class="icon-download align-middle leading-none"></i> Download
+                    PGP key</a
+                >
+            </div>
         </p>
     </main>
 </Layout>

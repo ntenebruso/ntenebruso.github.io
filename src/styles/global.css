@@ -32,7 +32,11 @@ a:hover {
 }
 
 .btn:hover {
-    @apply -translate-y-0.5 brightness-90;
+    @apply -translate-y-0.5 brightness-90 no-underline;
+}
+
+.btn.secondary {
+    @apply bg-neutral-200 dark:bg-zinc-800 text-inherit;
 }
 
 input[type="text"],
