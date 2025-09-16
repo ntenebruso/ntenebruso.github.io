@@ -1,5 +1,15 @@
 [
     {
+        "id": "neoshell",
+        "name": "NeoShell",
+        "description": "A customizable desktop shell made for Wayland.",
+        "button": {
+            "text": "View on Github",
+            "url": "https://github.com/ntenebruso/NeoShell"
+        },
+        "tags": ["Linux", "GUI"]
+    },
+    {
         "id": "nix-config",
         "name": "Nix Configuration",
         "description": "The NixOS configuration that I use on my personal machines.",
