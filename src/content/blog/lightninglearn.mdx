@@ -1,0 +1,130 @@
+---
+title: "How I Built LightningLearn: An AI-powered Course Building Platform"
+publishedAt: 2025-11-05
+author: Nick Tenebruso
+tags: [Saas, AI, Next.js, Golang]
+summary: A writeup on how I built LightningLearn, an AI powered course platform.
+---
+
+After a few months of late-night coding sessions, I'm excited to announce LightningLearn, an AI-powered platform that helps teachers build complete online courses with minimal effort. Teachers simply record or write content, and LightningLearn's generative AI automatically creates interactive modules like quizzes and supplemental material, and can even offer student support. Courses are delivered in a MasterClass/Udemy style format with self-paced chapters. In this post, I'll share what inspired me to make LightningLearn, how I built it, some technical challenges, and what's coming next.
+
+## Why I'm Building LightningLearn
+
+The idea for LightningLearn came after watching teachers spend hours creating quizzes and supplemental material, which often took more time than actually teaching. Most of this busywork can be automated so that educators can focus on creativity, not the smaller details. Building LightningLearn isn't just about AI; it's about making high-quality education more accessible and easier to produce.
+
+## Who is LightningLearn for?
+
+LightningLearn is for teachers, tutors, and content creators who want to focus on _content_, not logistics. Using LightningLearn, you bring the lessons, and LightningLearn can handle quiz creation, additional content generation, and even student assistance (coming soon). Pricing is designed to stay accessible, only taking a 20% revenue share, or a $5.99 monthly fee if total sales fall below that threshold[^1].
+
+[^1]: Pricing is subject to change. This figure only reflects the price at the time of writing this article.
+
+## Development Process
+
+Building LightningLearn was both a technical challenge and a learning experience. Here's a look at the tech stack behind the platform.
+
+### Backend: Golang
+
+I chose Golang for the backend of this project for its scalability and simplicity. Golang's ability to compile directly into a single binary drastically removes the overhead of an interpreted language like Python or Javascript while still keeping development approachable. Golang's built-in JSON parsing APIs, HTTP router, and concurrency model also make it ideal for an AI-powered SaaS where performance is critical.
+
+Pros:
+
+-   Excellent community-driven libraries (JWTs, authentication, TOTP, and task scheduling)
+-   Simple syntax
+-   Efficient concurrency through goroutines and channels
+-   Compiles directly to machine code
+-   Error handling
+
+Cons:
+
+-   Error handling: Even though I said this was a pro earlier, Go's error handling system requires explicit error handling for _every_ function call, which keeps code safe but holds back development sometimes.
+-   Project layout conventions can feel restrictive
+
+### Frontend
+
+For the frontend, I chose Next.js because I believe it's the most battle-tested React framework for production apps. Out of the box, Next.js offers data caching, server-side rendering, static site generation, and SEO tools. These built-in features make Next.js a good choice for a project such as this one, where there are a limited number of resources and people available.
+
+Pros:
+
+-   Performance optimizations and caching
+-   Automatic image optimization and caching
+-   Versatile data fetching options
+-   Strong ecosystem and community
+
+Cons:
+
+-   Development server can be slow (but much faster with Turbopack)
+-   Occasional confusion determining if code is running on the client or server (a lot of "magic")
+-   Project structure gets big really fast, especially with the App router
+
+### UI Framework
+
+LightningLearn's interface is built using Shadcn UI and Radix, which provide styled, accessible components as an extensible basis. The animations on the landing page were made using Framer Motion.
+
+## Challenges I Faced
+
+### Emails
+
+Initially, sending routine emails (triggered on user signups, purchased courses, etc.) sounds simple. At first, I just had the backend trigger an email API after, say, inserting a user into the database. But this raised a lot of questions:
+
+1.  What if the database transaction completes but the email send fails, and it contains required information for completing account set up?
+2.  What if the server crashes between the database transaction and the email send?
+3.  Should the user wait for the email to finish sending before receiving a response?
+
+All of these problems require some sort of concurrent approach. My first fix was to run email sends in a goroutine, so that the request could finish while the email sends asynchronously:
+
+```go
+func send_email(email string, name string) {
+    // Send the email here -- just an example
+    email.send(email, "Hello " + name)
+}
+
+func create_user(name string, email string, hashed_password string) {
+    user, err = dbExec("INSERT INTO users (name, email, password) VALUES $1, $2, $3 RETURNING *")
+
+    go send_email(email, name) // Send the email in the background
+
+    return user
+}
+```
+
+This approach worked because it solved the blocking issue, but it didn't solve the failure or persistence problems. Additionally, if the task is expensive, we wouldn't want to spawn too many threads at once. The real solution was to use a distributed task queue, which is a system that places tasks in a shared queue where worker processes can execute them asynchronously. The number of worker processes can be altered so that there aren't too many concurrent jobs running at once. I implemented this using the Go River library, which also has the benefit of integrating with PostgreSQL, so that when a change is committed to the database but a task fails, the database change can be reverted. Tasks are also saved in a PostgreSQL database, so they persist even if the server shuts down and can be distributed across multiple servers.
+
+### Authentication and JWTs
+
+Coming from developing backends primarily in Node.js, where there are so many simple authentication libraries, Golang was a bit different. There's no real "plug-and-play" solution for authenticaion in Go. For the MVP, I built a simple authentication system with bcrypt-hashed passwords, JWTs stored in HTTP-only cookies, and TOTP-based 2FA. While this approach is secure enough for an MVP, I plan to migrate auth to a third-party solution for more robust features and security, especially before releasing the first open beta.
+
+## Development Timeline
+
+I structured LightningLearn's development into four key phases:
+
+### Phase 0 (MVP)
+
+-   Authentication/Roles system
+-   Course editor, quizzes, and publishing
+-   Basic AI features
+-   Testing with limited userbase (closed beta)
+
+### Phase 1 (in progress)
+
+-   Third-party authentication
+-   More AI features (quiz creator, teacher chat)
+-   Teacher signups and demos
+-   Third-party video hosting and streaming
+
+### Phase 2:
+
+-   Limited student signups
+-   Collect structured feedback
+
+### Phase 3:
+
+-   Full AI feature set (namely, student assistance mode)
+-   Open registration
+
+## What's Next
+
+Building LightningLearn has been the most rewarding technical project I've ever worked on because it blends AI, education, and SaaS development. Next, I'm focusing on expanding features for student interactivity and analytics. If you're interested in early access or want to test LightningLearn when the first beta opens, I'll provide updates soon.
+
+<a href="https://lightning.ntenebruso.com/" target="_blank">
+    <button class="btn">Check out the landing page</button>
+</a>

@@ -1,5 +1,15 @@
 [
     {
+        "id": "lightninglearn",
+        "name": "LightningLearn",
+        "description": "An AI-powered course building platform, designed to make teaching easier and learning more intuitive.",
+        "button": {
+            "text": "Try it Out",
+            "url": "https://lightning.ntenebruso.com/"
+        },
+        "tags": ["SaaS", "React", "Next.js", "Golang"]
+    },
+    {
         "id": "neoshell",
         "name": "NeoShell",
         "description": "A customizable desktop shell made for Wayland.",
