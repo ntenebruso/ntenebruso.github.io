@@ -2,18 +2,20 @@
 import { getCollection } from "astro:content";
 import Tags from "./Tags.astro";
 
-const projects = await getCollection("projects");
+const projects = (await getCollection("projects")).sort(
+    (a, b) => b.data.order - a.data.order
+);
 ---
 
 {
     projects.map((project) => (
         <div
-            class="bg-zinc-100 dark:bg-zinc-800 py-5 mb-5 rounded-lg max-w-5xl mx-auto px-5"
+            class="bg-accent py-5 mb-5 rounded-lg max-w-5xl mx-auto px-5"
             id={project.data.id}
         >
             <Tags
                 tags={project.data.tags}
-                class="bg-neutral-200 dark:bg-zinc-700 rounded-md text-sm px-1 py-[2px]"
+                class="bg-muted-foreground/10 rounded-md text-sm px-1 py-[2px]"
             />
             <h3 class="font-bold text-2xl mt-2">{project.data.name}</h3>
             <p>{project.data.description}</p>

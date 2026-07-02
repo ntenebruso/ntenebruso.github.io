@@ -6,6 +6,10 @@ import Projects from "@components/Projects.astro";
 const dob = new Date("02/28/2006");
 const delta = new Date(Date.now() - dob.getTime());
 const age = delta.getFullYear() - 1970;
+
+import stevensLogoTile from "../assets/stevens-tile.png";
+import { Image } from "astro:assets";
+import ExpPosition from "@components/ExpPosition.astro";
 ---
 
 <Layout
@@ -17,17 +21,14 @@ const age = delta.getFullYear() - 1970;
             class="max-w-5xl mx-auto px-5 py-32 flex flex-col justify-center"
         >
             <h1 class="text-4xl font-bold">Hi, I'm Nick Tenebruso 👋</h1>
-            <p
-                class="text-xl font-medium mt-2 text-zinc-700 dark:text-zinc-400"
-            >
-                A software developer who likes designing and programming full stack
-                projects.
+            <p class="text-xl font-medium mt-2 text-muted-foreground">
+                A software developer, researcher, and student.
             </p>
             <p class="mt-5">
                 Welcome to my website! I am {age} years old and I have around six
-                years of programming experience, mainly with web and app
-                development. I'm currently a student at Stevens Institute of
-                Technology studying computer science.
+                years of programming experience, mainly with web and app development.
+                I'm currently a student at Stevens Institute of Technology studying
+                computer science.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
                 <a href="https://github.com/ntenebruso" target="_blank">
@@ -51,8 +52,8 @@ const age = delta.getFullYear() - 1970;
             </div>
         </section>
         <section class="max-w-5xl mx-auto px-5" id="tech">
-            <h2 class="text-4xl font-bold text-center mb-4">My Tech Stack</h2>
-            <div class="rounded-md p-4 bg-zinc-100 dark:bg-zinc-800">
+            <h2 class="text-4xl font-bold mb-4">My Tech Stack</h2>
+            <div class="rounded-md p-4 bg-accent">
                 <p>
                     I always try to keep myself up-to-date with the latest
                     technologies. I extensively modify my tech stack in order to
@@ -104,8 +105,25 @@ const age = delta.getFullYear() - 1970;
                 />
             </div>
         </section>
+        <section class="max-w-5xl mx-auto px-5 mt-20" id="experience">
+            <h2 class="text-4xl font-bold mb-4">Experience</h2>
+            <ExpPosition
+                position="Undergraduate Researcher"
+                image={stevensLogoTile}
+                place="Stevens Institute of Technology"
+                time="May 2026 - Present"
+                imageAlt="Stevens Logo"
+            >
+                <ul class="list-disc ml-4">
+                    <li>
+                        Researching human-AI interaction within the Computer
+                        Science department.
+                    </li>
+                </ul>
+            </ExpPosition>
+        </section>
         <section class="max-w-5xl mx-auto px-5 mt-20" id="projects">
-            <h2 class="text-4xl font-bold text-center mb-4">Projects</h2>
+            <h2 class="text-4xl font-bold mb-4">Projects</h2>
             <Projects />
         </section>
     </main>

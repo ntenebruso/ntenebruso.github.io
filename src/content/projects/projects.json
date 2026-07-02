@@ -7,7 +7,8 @@
             "text": "Try it Out",
             "url": "https://lightning.ntenebruso.com/"
         },
-        "tags": ["SaaS", "React", "Next.js", "Golang"]
+        "tags": ["SaaS", "React", "Next.js", "Golang"],
+        "order": 10
     },
     {
         "id": "neoshell",
@@ -17,7 +18,8 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/NeoShell"
         },
-        "tags": ["Linux", "GUI"]
+        "tags": ["Linux", "GUI"],
+        "order": 9
     },
     {
         "id": "nix-config",
@@ -27,7 +29,8 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/nixos-config"
         },
-        "tags": ["Linux", "NixOS"]
+        "tags": ["Linux", "NixOS"],
+        "order": 8
     },
     {
         "id": "ewaste",
@@ -37,7 +40,8 @@
             "text": "View Website",
             "url": "https://ewastepsa.ntenebruso.com/"
         },
-        "tags": ["Next.js", "React"]
+        "tags": ["Next.js", "React"],
+        "order": 7
     },
     {
         "id": "jester",
@@ -47,7 +51,8 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/Jester-Gesture-Recognition/"
         },
-        "tags": ["Neural Networks", "Python", "Computer Vision"]
+        "tags": ["Neural Networks", "Python", "Computer Vision"],
+        "order": 6
     },
     {
         "id": "arctic-os",
@@ -57,7 +62,8 @@
             "text": "More information",
             "url": "https://gitlab.com/arctic-os/"
         },
-        "tags": ["Linux"]
+        "tags": ["Linux"],
+        "order": 5
     },
     {
         "id": "rust-http-server",
@@ -67,7 +73,8 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/rust-http-server/"
         },
-        "tags": ["Rust", "Low-Level", "Web"]
+        "tags": ["Rust", "Low-Level", "Web"],
+        "order": 4
     },
     {
         "id": "redlight",
@@ -77,7 +84,8 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/redlight"
         },
-        "tags": ["Web", "React", "Next.js", "API"]
+        "tags": ["Web", "React", "Next.js", "API"],
+        "order": 3
     },
     {
         "id": "typetest",
@@ -87,7 +95,8 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/TypeTest"
         },
-        "tags": ["Web", "Vue", "Firebase"]
+        "tags": ["Web", "Vue", "Firebase"],
+        "order": 2
     },
     {
         "id": "chatt",
@@ -97,6 +106,7 @@
             "text": "View on Github",
             "url": "https://github.com/ntenebruso/chat-app"
         },
-        "tags": ["Web", "Svelte", "Sapper", "Full-Stack"]
+        "tags": ["Web", "Svelte", "Sapper", "Full-Stack"],
+        "order": 1
     }
 ]

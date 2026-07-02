@@ -4,38 +4,36 @@ import ThemeToggle from "./ThemeToggle.svelte";
 ---
 
 <header
-    class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3 font-display"
+    class="max-w-5xl mx-auto px-5 flex justify-between items-center py-3"
     data-swup-persist="header"
 >
     <a
         href="/"
-        class="font-bold text-4xl sm:text-3xl hover:no-underline text-inherit group"
+        class="relative font-bold text-4xl sm:text-3xl no-underline group
+        font-display text-foreground after:content-[''] after:absolute after:h-1
+        after:left-0 after:right-0 after:bottom-0 after:rounded-md
+        after:bg-brand after:-z-1 after:transition-all hover:after:h-full hover:after:-left-1 hover:after:-right-1
+        after:ease-out after:duration-100 hover:text-white transition-colors duration-75 italic"
     >
-        <span class="text-zinc-500 dark:text-zinc-700 group-hover:text-brand"
-            >&#123;
-        </span>
-        <span class="hidden sm:inline">Nick Tenebruso</span>
+        <span class="hidden sm:inline text">Nick Tenebruso</span>
         <span class="inline sm:hidden">NT</span>
-        <span class="text-zinc-500 dark:text-zinc-700 group-hover:text-brand">
-            &#125;</span
-        >
     </a>
     <div class="flex gap-x-3 relative">
         <ThemeToggle client:only="svelte" />
         <button
             id="menuOpenBtn"
-            class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 md:hidden leading-[0px] text-[24px] flex items-center justify-center"
+            class="rounded-full w-10 h-10 bg-accent border border-zinc-200 dark:border-zinc-700 md:hidden leading-0 text-[24px] flex items-center justify-center"
             aria-label="Open menu"
         >
             <i class="icon-menu"></i>
         </button>
         <nav
             id="menu"
-            class="group z-10 flex items-center bg-zinc-200 md:bg-zinc-100 dark:bg-zinc-800 px-4 md:h-10 md:rounded-full md:border-[1px] md:border-zinc-200 dark:border-zinc-700 md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
+            class="group z-10 flex items-center bg-accent px-4 md:h-10 md:rounded-full md:border md:border-border md:relative fixed top-0 left-0 right-0 text-center transition-transform -translate-y-full md:translate-y-0"
         >
             <button
                 id="menuCloseBtn"
-                class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 md:hidden absolute top-2 right-2 text-[24px] flex items-center justify-center"
+                class="rounded-full w-10 h-10 bg-accent border border-border md:hidden absolute top-2 right-2 text-[24px] flex items-center justify-center"
             >
                 <i class="icon-x"></i>
             </button>
@@ -101,6 +99,10 @@ import ThemeToggle from "./ThemeToggle.svelte";
 
             child.addEventListener("mouseover", () => {
                 setIndicator(child);
+            });
+
+            child.addEventListener("click", () => {
+                menu.classList.add("-translate-y-full");
             });
         });
 

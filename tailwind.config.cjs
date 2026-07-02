@@ -4,8 +4,8 @@ module.exports = {
     darkMode: "class",
     theme: {
         fontFamily: {
-            sans: ["Inter Variable", "sans-serif"],
-            display: ["Sora Variable", "sans-serif"],
+            sans: ["DM Sans", "Inter Variable", "sans-serif"],
+            display: ["Fraunces", "Sora Variable", "sans-serif"],
         },
         extend: {
             colors: {

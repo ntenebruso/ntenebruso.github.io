@@ -10,9 +10,9 @@
     function handleClick() {
         theme.update(value => (value == "dark" ? "light" : "dark"));
         if (themeValue == "dark") {
-            document.documentElement.classList.add("dark");
+            document.documentElement.dataset.theme = "dark";
         } else {
-            document.documentElement.classList.remove("dark");
+            document.documentElement.dataset.theme = "light";
         }
         localStorage.setItem("theme", themeValue);
     }
@@ -20,7 +20,7 @@
 
 <button
     id="toggle-btn"
-    class="rounded-full w-10 h-10 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700 leading-[0px] text-[24px] flex items-center justify-center"
+    class="cursor-pointer rounded-full w-10 h-10 bg-accent border border-border leading-0 text-[24px] flex items-center justify-center"
     aria-label="Toggle theme"
     on:click={handleClick}
 >

@@ -39,4 +39,4 @@
     });
 </script>
 
-<div class="rounded-md p-2 dark:bg-zinc-800 bg-zinc-100 border-[1px] border-zinc-200 dark:border-zinc-700" bind:this={container}></div>
+<div class="rounded-md p-2 bg-accent border border-border" bind:this={container}></div>

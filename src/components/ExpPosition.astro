@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+    position: string;
+    place: string;
+    time: string;
+    image: ImageMetadata;
+    imageAlt: string;
+}
+
+const { position, place, time, image, imageAlt } = Astro.props;
+---
+
+<div class="rounded-md p-4 bg-accent">
+    <div
+        class="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-4"
+    >
+        <div class="col-start-1 size-14 rounded-full overflow-hidden bg-white">
+            <Image
+                alt={imageAlt}
+                src={image}
+                class="object-cover w-full h-full"
+            />
+        </div>
+        <div class="col-start-2">
+            <div class="flex justify-between">
+                <h3 class="text-xl font-bold">{position}</h3>
+                <p class="text-muted-foreground dark:text-zinc-400">
+                    {time}
+                </p>
+            </div>
+            <p>
+                {place}
+            </p>
+        </div>
+        <div
+            class="col-start-1 row-start-2 w-0.5 bg-muted-foreground/20 dark:bg-zinc-700 h-full justify-self-center"
+        >
+        </div>
+        <div class="col-start-2 row-start-2 py-2">
+            <slot />
+        </div>
+    </div>
+</div>

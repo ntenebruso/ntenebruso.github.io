@@ -13,13 +13,9 @@ if (href == "/") {
 }
 ---
 
-<a
-    href={href}
-    class={`hover:no-underline text-zinc-700 dark:text-zinc-400`}
-    {...props}
->
+<a href={href} class={`no-underline text-muted-foreground`} {...props}>
     <span
-        class={`transition-colors ${isActive && "active"} hover:!text-zinc-800 hover:dark:!text-zinc-300`}
+        class={`transition-colors ${isActive && "active"} hover:text-foreground`}
         ><slot /></span
     >
 </a>

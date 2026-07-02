@@ -1,52 +1,118 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-html {
-    font-size: 16px;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant evil (&:where([data-theme="evil"]));
+
+:root {
+    /* COLORS */
+    /* --color-background: rgb(255, 238, 216);
+    --color-foreground: var(--color-neutral-800);
+    --color-muted-foreground: var(--color-neutral-700);
+    --color-accent: rgb(244, 228, 204);
+    --color-border: rgb(226, 212, 191);
+    --color-brand: #00944d; */
+
+    --theme-color-background: #fffff0;
+    --theme-color-foreground: var(--color-neutral-800);
+    --theme-color-muted-foreground: var(--color-neutral-600);
+    --theme-color-accent: #f8f8dd;
+    --theme-color-border: #e6e6bc;
+    --theme-color-brand: #00733c;
+
+    /* FONTS */
+    --theme-font-display: var(--font-fraunces), serif;
+    --theme-font-sans: var(--font-dm-sans), sans-serif;
+
+    @variant dark {
+        --theme-color-background: #22221f;
+        --theme-color-foreground: var(--color-neutral-200);
+        --theme-color-muted-foreground: var(--color-neutral-400);
+        --theme-color-accent: #30302b;
+        --theme-color-border: #47473f;
+        --theme-color-brand: #00944d;
+    }
+
+    @variant evil {
+        --theme-color-background: #000000;
+        --theme-color-foreground: #ff0000;
+        --theme-color-muted-foreground: #ff0000;
+        --theme-color-accent: #000000;
+        --theme-color-border: #ff0000;
+        --theme-color-brand: #ff0000;
+    }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    @apply font-display dark:text-zinc-200;
+@theme {
+    --color-background: var(--theme-color-background);
+    --color-foreground: var(--theme-color-foreground);
+    --color-muted-foreground: var(--theme-color-muted-foreground);
+    --color-accent: var(--theme-color-accent);
+    --color-border: var(--theme-color-border);
+    --color-brand: var(--theme-color-brand);
+
+    /* FONTS */
+    --font-display: var(--theme-font-display);
+    --font-sans: var(--theme-font-sans);
 }
 
-h1 {
-    @apply text-3xl;
+@utility prose {
+    /* TYPOGRAPHY */
+    --tw-prose-body: var(--color-foreground);
+    --tw-prose-headings: var(--color-foreground);
+    --tw-prose-bullets: var(--color-brand);
+    --tw-prose-counters: var(--color-brand);
 }
 
-a {
-    @apply text-brand;
+@layer base {
+    html {
+        font-size: 16px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display;
+    }
+
+    h1 {
+        @apply text-3xl;
+    }
+
+    a {
+        @apply text-brand;
+    }
+
+    a:hover {
+        @apply underline;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        @apply block w-full rounded-md p-2 border border-border bg-accent focus:outline-none focus:ring-brand focus:ring-2;
+    }
 }
 
-a:hover {
-    @apply underline;
-}
+@layer components {
+    .active {
+        @apply text-foreground md:text-foreground group-hover:text-muted-foreground;
+    }
 
-.btn {
-    @apply inline-block text-white dark:text-zinc-200 font-semibold bg-brand cursor-pointer px-4 py-2 rounded-full transition;
-}
+    .btn {
+        @apply inline-block text-neutral-100 font-semibold bg-brand cursor-pointer px-4 py-2 rounded-full transition;
+    }
 
-.btn:hover {
-    @apply -translate-y-0.5 brightness-90 no-underline;
-}
+    .btn:hover {
+        @apply -translate-y-0.5 brightness-90 no-underline;
+    }
 
-.btn.secondary {
-    @apply bg-neutral-200 dark:bg-zinc-800 text-inherit;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    @apply block w-full rounded-md p-2 bg-neutral-100 dark:bg-zinc-800 border-[1px] border-gray-300 dark:border-zinc-700 focus:outline-none focus:ring-brand focus:ring-2;
-}
-
-.active {
-    @apply text-brand md:text-zinc-800 md:dark:text-zinc-300 group-hover:text-zinc-700 group-hover:dark:text-zinc-400;
+    .btn.secondary {
+        @apply bg-accent text-inherit;
+    }
 }
 
 /* TRANSITIONS */

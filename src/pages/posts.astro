@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Tags from "@components/Tags.astro";
 import { format } from "date-fns";
 import { getCollection } from "astro:content";
+import { UTCDate } from "@date-fns/utc";
 
 const posts = await getCollection("blog", ({ data }) => data.draft !== true);
 posts.sort(
@@ -11,22 +12,22 @@ posts.sort(
 ---
 
 <Layout title="Nick Tenebruso's Blog">
-    <main class="max-w-5xl mx-auto px-5 mt-8 mb-5">
-        <h1 class="text-5xl font-bold text-center mb-10">Blog Posts</h1>
+    <main class="max-w-5xl mx-auto px-5 mt-10 mb-5">
+        <h1 class="text-5xl font-bold mb-10">Blog Posts</h1>
         {
             posts.map((post) => (
                 <a
-                    class="block text-current hover:no-underline mt-4 bg-zinc-100 dark:bg-zinc-800 mx-auto max-w-3xl p-4 rounded-lg border-[1px] border-zinc-200 dark:border-zinc-700 transition-transform duration-300 hover:-translate-y-1"
+                    class="block text-current hover:no-underline mt-4 bg-accent p-4 rounded-lg border border-border transition-transform duration-300 hover:-translate-y-1"
                     href={`/posts/${post.id}`}
                 >
                     <div class="flex justify-between">
                         <Tags
                             tags={post.data.tags}
-                            class="bg-brand text-white dark:text-zinc-200 px-2 rounded-md"
+                            class="bg-brand text-white px-2 rounded-md"
                         />
-                        <p class="inline-block text-zinc-500 dark:text-zinc-400 text-right">
+                        <p class="inline-block text-muted-foreground text-right">
                             {format(
-                                new Date(post.data.publishedAt),
+                                new UTCDate(post.data.publishedAt),
                                 "MMMM do, yyyy"
                             )}
                         </p>
