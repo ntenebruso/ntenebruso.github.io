@@ -62,6 +62,9 @@
     --tw-prose-headings: var(--color-foreground);
     --tw-prose-bullets: var(--color-brand);
     --tw-prose-counters: var(--color-brand);
+    --tw-prose-code: var(--color-foreground);
+    --tw-prose-bold: var(--color-foreground);
+    --tw-prose-links: var(--color-foreground);
 }
 
 @layer base {
